@@ -46,12 +46,12 @@ public class WorkingWeekDaysTest {
 
     }
     
-    TODO: Mudar a hierarquia dos inSowling tome. Ir ao CalendarModel e ver todos os que modelam periodos no calendadr
+    //TODO: Mudar a hierarquia dos inSowling tome. Ir ao CalendarModel e ver todos os que modelam periodos no calendadr
 
     @Test
     public void canRemoveWeekDayException() {
 
-        this.testWorkignWeekDays.addException(new WeekDayException("DayOff", WeekDayEnum.FRIDAY, WeekDayEnum.MONDAY));
+        this.testWorkignWeekDays.addException(new WeekDayException("DayOff", WeekDayPeriod.valueOf(FRIDAY, WeekDayEnum.MONDAY));
         assertFalse(this.testWorkignWeekDays.isWorkingWeekDay(WeekDayEnum.FRIDAY));
         assertFalse(this.testWorkignWeekDays.isWorkingWeekDay(WeekDayEnum.MONDAY));
         this.testWorkignWeekDays.removeException("DayOff");
