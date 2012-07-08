@@ -1,6 +1,7 @@
 package eu.jpereira.appointments.model.calendar;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import eu.jpereira.appointments.model.calendar.datetime.DateTimePeriodException;
@@ -11,6 +12,7 @@ import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
 
 import static org.junit.Assert.*;
 
+@Ignore
 public class FakeCalendarModelTest {
 
     private CalendarModel testCalendarModel;

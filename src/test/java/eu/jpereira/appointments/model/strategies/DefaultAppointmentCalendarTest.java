@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import eu.jpereira.appointments.model.AppointmentDate;
@@ -131,6 +132,7 @@ public class DefaultAppointmentCalendarTest {
     
 
     @Test
+    @Ignore
     public void elapsedTenDaysSinceAppointmentDay() {
         AppointmentCalendarStrategy strategy = buildCalendarStrategy(DateUtils.getToday(), 12, 31);
         
