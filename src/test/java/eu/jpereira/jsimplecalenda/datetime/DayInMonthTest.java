@@ -60,12 +60,25 @@ public class DayInMonthTest {
 		DayInMonth dayOfMonth = DayInMonth.valueOf("12-b");
 	}
 
+	@Test(expected = InvalidDayOfMonthExpressionException.class)
+	public void throwExceptionInvalidIntegerValues() {
+		@SuppressWarnings("unused")
+		DayInMonth dayOfMonth = DayInMonth.valueOf("12/b");
+	}
+
 	@Test
 	public void testEqualsReflexive() {
 		DayInMonth dayOne = DayInMonth.valueOf("12/12");
 		DayInMonth dayTwo = DayInMonth.valueOf("12/11");
 		assertFalse(dayOne.equals(dayTwo));
 		assertFalse(dayTwo.equals(dayOne));
+	}
+
+	@Test
+	public void testEqualsSameRference() {
+		DayInMonth dayOne = DayInMonth.valueOf("01/01");
+		DayInMonth daywo = dayOne;
+		assertTrue(dayOne.equals(daywo));
 	}
 
 	@Test
@@ -117,5 +130,19 @@ public class DayInMonthTest {
 		DayInMonth dayTwo = DayInMonth.valueOf("12/12");
 		assertEquals(-61, dayOne.compareTo(dayTwo));
 		assertEquals(61, dayTwo.compareTo(dayOne));
+	}
+
+	@Test
+	public void testHashCode() {
+		DayInMonth dayInMonth = DayInMonth.valueOf("01/02");
+		DayInMonth dayInMonth_equals = DayInMonth.valueOf("01/02");
+		assertEquals(dayInMonth.hashCode(), dayInMonth_equals.hashCode());
+	}
+
+	@Test
+	public void testHashCodeDifferent() {
+		DayInMonth dayInMonth = DayInMonth.valueOf("01/02");
+		DayInMonth dayInMonth_equals = DayInMonth.valueOf("01/03");
+		assertFalse(dayInMonth.hashCode() == dayInMonth_equals.hashCode());
 	}
 }
