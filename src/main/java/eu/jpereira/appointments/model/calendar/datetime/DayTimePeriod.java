@@ -1,6 +1,7 @@
 package eu.jpereira.appointments.model.calendar.datetime;
 
-import eu.jpereira.appointments.model.calendar.exceptions.InvalidDayTimeExpressionException;
+import eu.jpereira.jsimplecalendar.datetime.exceptions.IllegalDateTimeComponentValueException;
+
 
 public class DayTimePeriod implements Comparable<DayTimePeriod>, AbstractPeriod {
 
@@ -25,7 +26,7 @@ public class DayTimePeriod implements Comparable<DayTimePeriod>, AbstractPeriod 
             this.minute = Integer.parseInt(dayTimeExpression.substring(colomIndex + 1, dayTimeExpression.length()));
 
         } catch (Exception e) {
-            throw new InvalidDayTimeExpressionException("The Expression could not be parsed. Make sure the expression is in the format hh:mm", e);
+            throw new IllegalDateTimeComponentValueException("The Expression could not be parsed. Make sure the expression is in the format hh:mm", e);
         }
         checkConsistency();
 
@@ -33,7 +34,7 @@ public class DayTimePeriod implements Comparable<DayTimePeriod>, AbstractPeriod 
 
     private void checkConsistency() {
         if (this.hour < 0 || this.hour > 23 || this.minute < 0 || this.hour > 59) {
-            throw new InvalidDayTimeExpressionException("Invalid values for hour or minute [0-23]:[0-58]");
+            throw new IllegalDateTimeComponentValueException("Invalid values for hour or minute [0-23]:[0-58]");
         }
 
     }

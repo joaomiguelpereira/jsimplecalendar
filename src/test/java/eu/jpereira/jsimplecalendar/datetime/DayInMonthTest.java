@@ -1,4 +1,4 @@
-package eu.jpereira.jsimplecalenda.datetime;
+package eu.jpereira.jsimplecalendar.datetime;
 
 import static org.junit.Assert.*;
 

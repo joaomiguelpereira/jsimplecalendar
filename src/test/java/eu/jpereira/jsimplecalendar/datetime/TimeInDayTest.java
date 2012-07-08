@@ -1,4 +1,4 @@
-package eu.jpereira.jsimplecalenda.datetime;
+package eu.jpereira.jsimplecalendar.datetime;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -6,8 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import eu.jpereira.appointments.model.calendar.exceptions.InvalidDayTimeExpressionException;
-import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
+import eu.jpereira.jsimplecalendar.datetime.exceptions.IllegalDateTimeComponentValueException;
 
 public class TimeInDayTest {
 
@@ -21,23 +20,23 @@ public class TimeInDayTest {
         testAllDayHoursWithPrefixes();
     }
 
-    @Test(expected=InvalidDayTimeExpressionException.class)
+    @Test(expected=IllegalDateTimeComponentValueException.class)
     public void cantConstructIncompleteDayTimeNoMinutes() {
         TimeInDay.valueOf("1:");
     }
 
-    @Test(expected=InvalidDayTimeExpressionException.class)
+    @Test(expected=IllegalDateTimeComponentValueException.class)
     public void cantConstructIncompleteDayTimeNoHour() {
         TimeInDay.valueOf(":30");
     }
 
 
-    @Test(expected=InvalidDayTimeExpressionException.class)
+    @Test(expected=IllegalDateTimeComponentValueException.class)
     public void cantConstructInvalidDayTimeUpperBoundary() {
         TimeInDay.valueOf("24:00");
         
     }
-    @Test(expected=InvalidDayTimeExpressionException.class)
+    @Test(expected=IllegalDateTimeComponentValueException.class)
     public void cantConstructInvalidDayTimeLowerBoundary() {
         TimeInDay.valueOf("-1:00");
         

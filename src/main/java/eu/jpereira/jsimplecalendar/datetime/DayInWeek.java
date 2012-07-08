@@ -1,5 +1,7 @@
 package eu.jpereira.jsimplecalendar.datetime;
 
+import eu.jpereira.jsimplecalendar.datetime.exceptions.IllegalDateTimeComponentValueException;
+
 public class DayInWeek implements DateTimeComponent {
 
 	private WeekDayEnum backedWeekDayEnum;
@@ -24,15 +26,20 @@ public class DayInWeek implements DateTimeComponent {
 	 * @return
 	 */
 	public static DayInWeek valueOf(String weekDay) {
-		WeekDayEnum enumValue = WeekDayEnum.valueOf(weekDay);
-		return new DayInWeek(enumValue);
+		try {
+			WeekDayEnum enumValue = WeekDayEnum.valueOf(weekDay);
+			return new DayInWeek(enumValue);
+		} catch ( IllegalArgumentException ile) {
+			throw new IllegalDateTimeComponentValueException("Invalid value for day in Week.",ile);
+		}
+		
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((backedWeekDayEnum == null) ? 0 : backedWeekDayEnum.hashCode());
+		result = prime * result + backedWeekDayEnum.hashCode();
 		return result;
 	}
 
