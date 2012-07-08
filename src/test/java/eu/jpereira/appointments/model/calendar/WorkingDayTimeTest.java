@@ -56,10 +56,7 @@ public class WorkingDayTimeTest {
         testWorkingTime.addException(new WorkingTimeException("other", "3:00", "15:00"));
         assertEquals(1, testWorkingTime.getExceptions().size());
 
-        for (WorkingTimeException exception : testWorkingTime.getExceptions()) {
-            System.err.println(exception);
-        }
-
+       
     }
 
 }

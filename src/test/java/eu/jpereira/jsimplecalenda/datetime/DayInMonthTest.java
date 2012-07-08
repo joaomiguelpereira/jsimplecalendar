@@ -23,10 +23,7 @@ public class DayInMonthTest {
 				String expression = d + "/" + m;
 				@SuppressWarnings("unused")
 				DayInMonth dayOfMonth = DayInMonth.valueOf(expression);
-				System.out.println("Testing expression: " + expression);
-
 				String expressionPadded = (d < 10 ? "0" + d : d) + "/" + (m < 10 ? "0" + m : m);
-				System.err.println("Testing padded version: " + expressionPadded);
 				dayOfMonth = DayInMonth.valueOf(expressionPadded);
 
 			}
@@ -105,7 +102,7 @@ public class DayInMonthTest {
 		assertEquals(-3, dayOne.compareTo(dayTwo));
 		assertEquals(3, dayTwo.compareTo(dayOne));
 	}
-	
+
 	@Test
 	public void compareOneMonthGreaterDayMonthy() {
 		DayInMonth dayOne = DayInMonth.valueOf("12/11");
@@ -113,7 +110,7 @@ public class DayInMonthTest {
 		assertEquals(-30, dayOne.compareTo(dayTwo));
 		assertEquals(30, dayTwo.compareTo(dayOne));
 	}
-	
+
 	@Test
 	public void compareTwoMonthGreaterDayMonthy() {
 		DayInMonth dayOne = DayInMonth.valueOf("11/10");

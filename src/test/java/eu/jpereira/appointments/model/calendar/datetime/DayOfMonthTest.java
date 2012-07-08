@@ -23,10 +23,7 @@ public class DayOfMonthTest {
                 String expression = d + "/" + m;
                 @SuppressWarnings("unused")
                 DayOfMonth dayOfMonth = DayOfMonth.valueOf(expression);
-                System.out.println("Testing expression: " + expression);
-
                 String expressionPadded = (d < 10 ? "0" + d : d ) + "/" + (m < 10 ? "0" + m : m );
-                System.err.println("Testing padded version: " + expressionPadded);
                 dayOfMonth = DayOfMonth.valueOf(expressionPadded);
 
             }
