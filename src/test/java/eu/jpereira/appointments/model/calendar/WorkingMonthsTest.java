@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import eu.jpereira.appointments.model.calendar.datetime.MonthException;
-import eu.jpereira.appointments.model.calendar.datetime.MonthPeriod;
+import eu.jpereira.jsimplecalendar.datetime.MonthInYear;
 
 public class WorkingMonthsTest {
 
@@ -23,8 +23,8 @@ public class WorkingMonthsTest {
     @Before
     public void setup() {
 
-        List<MonthPeriod> initialWorkingMonths = new ArrayList<MonthPeriod>(12);
-        initialWorkingMonths.addAll(Arrays.asList(MonthPeriod.allMonths()));
+        List<MonthInYear> initialWorkingMonths = new ArrayList<MonthInYear>(12);
+        initialWorkingMonths.addAll(Arrays.asList(MonthInYear.allMonths()));
         Map<String, MonthException> initialExceptionWorkingMonths = new HashMap<String, MonthException>();
         this.testWorkingMonths = new WorkingMonths(initialWorkingMonths, initialExceptionWorkingMonths);
     }
@@ -32,34 +32,34 @@ public class WorkingMonthsTest {
     @Test
     public void canAddMonthsExceptions() {
 
-        for (MonthPeriod month : MonthPeriod.allMonths()) {
+        for (MonthInYear month : MonthInYear.allMonths()) {
             assertTrue(testWorkingMonths.contains(month));
         }
-        testWorkingMonths.addException(new MonthException("Closing", MonthPeriod.valueOf("JANUARY")));
-        assertFalse(testWorkingMonths.contains(MonthPeriod.valueOf("JANUARY")));
+        testWorkingMonths.addException(new MonthException("Closing", MonthInYear.valueOf("JANUARY")));
+        assertFalse(testWorkingMonths.contains(MonthInYear.valueOf("JANUARY")));
     }
 
     @Test
     public void canRemoveMonthsExceptions() {
 
-        for (MonthPeriod month : MonthPeriod.allMonths()) {
+        for (MonthInYear month : MonthInYear.allMonths()) {
             assertTrue(testWorkingMonths.contains(month));
         }
-        testWorkingMonths.addException(new MonthException("Closing", MonthPeriod.valueOf("JANUARY")));
-        assertFalse(testWorkingMonths.contains(MonthPeriod.valueOf("JANUARY")));
+        testWorkingMonths.addException(new MonthException("Closing", MonthInYear.valueOf("JANUARY")));
+        assertFalse(testWorkingMonths.contains(MonthInYear.valueOf("JANUARY")));
         testWorkingMonths.removeException("Closing");
-        assertTrue(testWorkingMonths.contains(MonthPeriod.valueOf("JANUARY")));
+        assertTrue(testWorkingMonths.contains(MonthInYear.valueOf("JANUARY")));
 
     }
 
     @Test
     public void canListMonthsExceptions() {
 
-        for (MonthPeriod month : MonthPeriod.allMonths()) {
+        for (MonthInYear month : MonthInYear.allMonths()) {
             assertTrue(testWorkingMonths.contains(month));
         }
         assertEquals(0, testWorkingMonths.getExceptions().size());
-        testWorkingMonths.addException(new MonthException("Closing", MonthPeriod.valueOf("JANUARY")));
+        testWorkingMonths.addException(new MonthException("Closing", MonthInYear.valueOf("JANUARY")));
         assertEquals(1, testWorkingMonths.getExceptions().size());
 
     }

@@ -4,10 +4,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import eu.jpereira.appointments.model.calendar.datetime.DateTimePeriodException;
-import eu.jpereira.appointments.model.calendar.datetime.DayOfMonth;
 import eu.jpereira.appointments.model.calendar.datetime.DayOfMonthException;
-import eu.jpereira.appointments.model.calendar.datetime.DayTimePeriod;
 import eu.jpereira.appointments.model.calendar.datetime.WorkingPeriodFilter;
+import eu.jpereira.jsimplecalendar.datetime.DayInMonth;
+import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
 
 import static org.junit.Assert.*;
 
@@ -36,13 +36,13 @@ public class FakeCalendarModelTest {
 
     @Test
     public void testFilterForDayTime() {
-        WorkingPeriodFilter workingPeriodFilter = new WorkingPeriodFilter().setDayTime(DayTimePeriod.valueOf("9:00"));
+        WorkingPeriodFilter workingPeriodFilter = new WorkingPeriodFilter().setDayTime(TimeInDay.valueOf("9:00"));
         assertTrue(testCalendarModel.isWorkingPeriod(workingPeriodFilter));
     }
 
     @Test
     public void testFilterForDayOfMonth() {
-        WorkingPeriodFilter workingPeriodFilter = new WorkingPeriodFilter().setDayOfMonth(DayOfMonth.valueOf("25/12"));
+        WorkingPeriodFilter workingPeriodFilter = new WorkingPeriodFilter().setDayOfMonth(DayInMonth.valueOf("25/12"));
         assertTrue(testCalendarModel.isWorkingPeriod(workingPeriodFilter));
     }
 

@@ -9,8 +9,8 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import eu.jpereira.appointments.model.calendar.datetime.DayTimePeriod;
 import eu.jpereira.appointments.model.calendar.datetime.WorkingTimeException;
+import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
 
 public class WorkingDayTimeTest {
 
@@ -27,11 +27,11 @@ public class WorkingDayTimeTest {
         WorkingTimeException exception = new WorkingTimeException("siesta", "14:30", "15:00");
         testWorkingTime.addException(exception);
 
-        assertTrue(testWorkingTime.contains(DayTimePeriod.valueOf("14:29")));
-        assertFalse(testWorkingTime.contains(DayTimePeriod.valueOf("14:30")));
-        assertFalse(testWorkingTime.contains(DayTimePeriod.valueOf("14:31")));
-        assertFalse(testWorkingTime.contains(DayTimePeriod.valueOf("14:59")));
-        assertTrue(testWorkingTime.contains(DayTimePeriod.valueOf("15:00")));
+        assertTrue(testWorkingTime.contains(TimeInDay.valueOf("14:29")));
+        assertFalse(testWorkingTime.contains(TimeInDay.valueOf("14:30")));
+        assertFalse(testWorkingTime.contains(TimeInDay.valueOf("14:31")));
+        assertFalse(testWorkingTime.contains(TimeInDay.valueOf("14:59")));
+        assertTrue(testWorkingTime.contains(TimeInDay.valueOf("15:00")));
 
     }
 
@@ -41,12 +41,12 @@ public class WorkingDayTimeTest {
         testWorkingTime.addException(new WorkingTimeException("other", "3:00", "15:00"));
         assertEquals(1, testWorkingTime.getExceptions().size());
 
-        assertFalse(testWorkingTime.contains(DayTimePeriod.valueOf("14:00")));
+        assertFalse(testWorkingTime.contains(TimeInDay.valueOf("14:00")));
 
         testWorkingTime.removeException("other");
 
         assertEquals(0, testWorkingTime.getExceptions().size());
-        assertTrue(testWorkingTime.contains(DayTimePeriod.valueOf("14:00")));
+        assertTrue(testWorkingTime.contains(TimeInDay.valueOf("14:00")));
 
     }
 

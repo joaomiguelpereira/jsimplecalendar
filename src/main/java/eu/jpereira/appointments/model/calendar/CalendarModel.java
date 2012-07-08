@@ -4,13 +4,13 @@ import java.util.List;
 
 import eu.jpereira.appointments.model.calendar.datetime.DateTimePeriodException;
 import eu.jpereira.appointments.model.calendar.datetime.DayOfMonthException;
-import eu.jpereira.appointments.model.calendar.datetime.DayTimePeriod;
 import eu.jpereira.appointments.model.calendar.datetime.MonthException;
-import eu.jpereira.appointments.model.calendar.datetime.MonthPeriod;
 import eu.jpereira.appointments.model.calendar.datetime.WeekDayException;
-import eu.jpereira.appointments.model.calendar.datetime.WeekDayPeriod;
 import eu.jpereira.appointments.model.calendar.datetime.WorkingPeriodFilter;
 import eu.jpereira.appointments.model.calendar.datetime.WorkingTimeException;
+import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
+import eu.jpereira.jsimplecalendar.datetime.MonthInYear;
+import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
 
 /**
  * A calendar model models a calendar that have working months, working days,
@@ -46,11 +46,11 @@ public abstract class CalendarModel {
      * of the day
      * 
      * @param dayTimeExpression
-     *            A time expression. See {@link DayTimePeriod}
+     *            A time expression. See {@link TimeInDay}
      * @return
      */
     public boolean isWorkingTime(String dayTimeExpression) {
-        return this.workingTime.contains(DayTimePeriod.valueOf(dayTimeExpression));
+        return this.workingTime.contains(TimeInDay.valueOf(dayTimeExpression));
     }
 
     /**
@@ -92,7 +92,7 @@ public abstract class CalendarModel {
      *            See {@link WeekDayEnum}
      * @return true if is a working week day, false otherwise
      */
-    public boolean isWorkingWeekDay(WeekDayPeriod dayOfTheweek) {
+    public boolean isWorkingWeekDay(DayInWeek dayOfTheweek) {
         return this.workingWeekDays.contains(dayOfTheweek);
     }
 
@@ -108,7 +108,7 @@ public abstract class CalendarModel {
         return this.workingWeekDays.getExceptions();
     }
 
-    public boolean isWorkingMonth(MonthPeriod month) {
+    public boolean isWorkingMonth(MonthInYear month) {
         return this.workingMonths.contains(month);
 
     }

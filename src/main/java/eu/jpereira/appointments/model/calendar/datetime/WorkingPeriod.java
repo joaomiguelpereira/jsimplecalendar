@@ -1,6 +1,8 @@
 package eu.jpereira.appointments.model.calendar.datetime;
 
-public interface WorkingPeriod<T extends AbstractPeriod> {
+import eu.jpereira.jsimplecalendar.datetime.DateTimeComponent;
+
+public interface WorkingPeriod<T extends DateTimeComponent> {
 
     public boolean contains(T abstractPeriod);
 }

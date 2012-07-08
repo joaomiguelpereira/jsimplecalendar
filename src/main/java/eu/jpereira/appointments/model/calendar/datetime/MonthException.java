@@ -1,12 +1,14 @@
 package eu.jpereira.appointments.model.calendar.datetime;
 
+import eu.jpereira.jsimplecalendar.datetime.MonthInYear;
+
 
 public class MonthException {
 
     private String name;
-    private MonthPeriod[] months;
+    private MonthInYear[] months;
 
-    public MonthException(String name, MonthPeriod... months) {
+    public MonthException(String name, MonthInYear... months) {
         this.name = name;
         this.months = months;
     }
@@ -15,7 +17,7 @@ public class MonthException {
         return name;
     }
 
-    public MonthPeriod[] getMonths() {
+    public MonthInYear[] getMonths() {
         return months;
     }
 

@@ -1,13 +1,15 @@
 package eu.jpereira.appointments.model.calendar.datetime;
 
 import eu.jpereira.appointments.model.calendar.WorkingDayTime;
+import eu.jpereira.jsimplecalendar.datetime.DayInMonth;
+import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
 
 public class WorkingPeriodFilter {
 
-    private DayTimePeriod dayTime;
-    private DayOfMonth dayOfMonth;
+    private TimeInDay dayTime;
+    private DayInMonth dayOfMonth;
 
-    public WorkingPeriodFilter setDayTime(DayTimePeriod dayTimeToFilter) {
+    public WorkingPeriodFilter setDayTime(TimeInDay dayTimeToFilter) {
         this.dayTime = dayTimeToFilter;
         return this;
     }
@@ -16,7 +18,7 @@ public class WorkingPeriodFilter {
         return workingDayTime.contains(this.dayTime);
     }
 
-    public WorkingPeriodFilter setDayOfMonth(DayOfMonth dayOfMonth) {
+    public WorkingPeriodFilter setDayOfMonth(DayInMonth dayOfMonth) {
         this.dayOfMonth = dayOfMonth;
         return this;
     }

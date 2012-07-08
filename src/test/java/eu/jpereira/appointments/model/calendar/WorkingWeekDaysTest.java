@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import eu.jpereira.appointments.model.calendar.datetime.WeekDayException;
-import eu.jpereira.appointments.model.calendar.datetime.WeekDayPeriod;
+import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
 
 public class WorkingWeekDaysTest {
 
@@ -23,26 +23,26 @@ public class WorkingWeekDaysTest {
     @Before
     public void setup() {
 
-        List<WeekDayPeriod> initialWorkingWeekDays = new ArrayList<WeekDayPeriod>();
-        initialWorkingWeekDays.addAll(Arrays.asList(WeekDayPeriod.allBusinessWeekDays()));
+        List<DayInWeek> initialWorkingWeekDays = new ArrayList<DayInWeek>();
+        //All business days are working days
+        initialWorkingWeekDays.addAll(Arrays.asList(DayInWeek.allBusinessWeekDays()));
         Map<String, WeekDayException> initialWeekDayExceptions = new HashMap<String, WeekDayException>();
-        initialWeekDayExceptions.put("weeend", new WeekDayException("weekend", WeekDayPeriod.valueOf("SATURDAY"), WeekDayPeriod.valueOf("SUNDAY")));
-
+        //initialWeekDayExceptions.put("weeend", new WeekDayException("weekend", WeekDayPeriod.valueOf("SATURDAY"), WeekDayPeriod.valueOf("SUNDAY")));
         this.testWorkignWeekDays = new WorkingWeekDays(initialWorkingWeekDays, initialWeekDayExceptions);
     }
 
     @Test
     public void canAddWeekDayExceptions() {
+    	
+        this.testWorkignWeekDays.addException(new WeekDayException("DayOff", DayInWeek.valueOf("FRIDAY"), DayInWeek.valueOf("MONDAY")));
 
-        this.testWorkignWeekDays.addException(new WeekDayException("DayOff", WeekDayPeriod.valueOf("FRIDAY"), WeekDayPeriod.valueOf("MONDAY")));
-
-        assertFalse(this.testWorkignWeekDays.contains(WeekDayPeriod.valueOf("MONDAY")));
-        assertTrue(this.testWorkignWeekDays.contains(WeekDayPeriod.valueOf("TUESDAY")));
-        assertTrue(this.testWorkignWeekDays.contains(WeekDayPeriod.valueOf("WEDNESDAY")));
-        assertTrue(this.testWorkignWeekDays.contains(WeekDayPeriod.valueOf("THURSDAY")));
-        assertFalse(this.testWorkignWeekDays.contains(WeekDayPeriod.valueOf("FRIDAY")));
-        assertFalse(this.testWorkignWeekDays.contains(WeekDayPeriod.valueOf("SATURDAY")));
-        assertFalse(this.testWorkignWeekDays.contains(WeekDayPeriod.valueOf("SUNDAY")));
+        assertFalse(this.testWorkignWeekDays.contains(DayInWeek.valueOf("MONDAY")));
+        assertTrue(this.testWorkignWeekDays.contains(DayInWeek.valueOf("TUESDAY")));
+        assertTrue(this.testWorkignWeekDays.contains(DayInWeek.valueOf("WEDNESDAY")));
+        assertTrue(this.testWorkignWeekDays.contains(DayInWeek.valueOf("THURSDAY")));
+        assertFalse(this.testWorkignWeekDays.contains(DayInWeek.valueOf("FRIDAY")));
+        assertFalse(this.testWorkignWeekDays.contains(DayInWeek.valueOf("SATURDAY")));
+        assertFalse(this.testWorkignWeekDays.contains(DayInWeek.valueOf("SUNDAY")));
 
     }
     
@@ -51,12 +51,12 @@ public class WorkingWeekDaysTest {
     @Test
     public void canRemoveWeekDayException() {
 
-        this.testWorkignWeekDays.addException(new WeekDayException("DayOff", WeekDayPeriod.valueOf(FRIDAY, WeekDayEnum.MONDAY));
-        assertFalse(this.testWorkignWeekDays.isWorkingWeekDay(WeekDayEnum.FRIDAY));
-        assertFalse(this.testWorkignWeekDays.isWorkingWeekDay(WeekDayEnum.MONDAY));
+        this.testWorkignWeekDays.addException(new WeekDayException("DayOff", DayInWeek.valueOf("FRIDAY"), DayInWeek.valueOf("MONDAY")));
+        assertFalse(this.testWorkignWeekDays.contains(DayInWeek.valueOf("FRIDAY")));
+        assertFalse(this.testWorkignWeekDays.contains(DayInWeek.valueOf("MONDAY")));
         this.testWorkignWeekDays.removeException("DayOff");
-        assertTrue(this.testWorkignWeekDays.isWorkingWeekDay(WeekDayEnum.FRIDAY));
-        assertTrue(this.testWorkignWeekDays.isWorkingWeekDay(WeekDayEnum.MONDAY));
+        assertTrue(this.testWorkignWeekDays.contains(DayInWeek.valueOf("FRIDAY")));
+        assertTrue(this.testWorkignWeekDays.contains(DayInWeek.valueOf("MONDAY")));
 
     }
 
@@ -67,8 +67,8 @@ public class WorkingWeekDaysTest {
         // lunch exception from 12:00 to 13:00
 
         int initialExceptionsCount = this.testWorkignWeekDays.getExceptions().size();
-        this.testWorkignWeekDays.addException(new WeekDayException("DayOff", WeekDayEnum.FRIDAY, WeekDayEnum.MONDAY));
-        this.testWorkignWeekDays.addException(new WeekDayException("DayOff2", WeekDayEnum.FRIDAY, WeekDayEnum.SATURDAY));
+        this.testWorkignWeekDays.addException(new WeekDayException("DayOff", DayInWeek.valueOf("FRIDAY"), DayInWeek.valueOf("MONDAY")));
+        this.testWorkignWeekDays.addException(new WeekDayException("DayOff2", DayInWeek.valueOf("FRIDAY"), DayInWeek.valueOf("SATURDAY")));
         assertEquals(initialExceptionsCount + 2, this.testWorkignWeekDays.getExceptions().size());
 
     }

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import eu.jpereira.appointments.model.calendar.datetime.DayTimePeriod;
 import eu.jpereira.appointments.model.calendar.datetime.DayTimeInterval;
 import eu.jpereira.appointments.model.calendar.datetime.WorkingPeriod;
 import eu.jpereira.appointments.model.calendar.datetime.WorkingTimeException;
 import eu.jpereira.appointments.model.calendar.exceptions.WorkingTimeExceptionNotFound;
+import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
 
-public class WorkingDayTime implements WorkingPeriod<DayTimePeriod> {
+public class WorkingDayTime implements WorkingPeriod<TimeInDay> {
 
     private Map<String, WorkingTimeException> exceptions;
     private DayTimeInterval dayTimeSlot;
@@ -24,13 +24,13 @@ public class WorkingDayTime implements WorkingPeriod<DayTimePeriod> {
         exceptions.put(workingTimeException.getName(), workingTimeException);
     }
 
-    public boolean contains(DayTimePeriod dayTime) {
+    public boolean contains(TimeInDay dayTime) {
 
         return this.dayTimeSlot.includes(dayTime) && !isException(dayTime);
 
     }
 
-    private boolean isException(DayTimePeriod dayTime) {
+    private boolean isException(TimeInDay dayTime) {
         for (WorkingTimeException exception : exceptions.values()) {
             if (exception.includes(dayTime)) {
                 return true;

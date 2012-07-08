@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import eu.jpereira.appointments.model.calendar.datetime.MonthException;
-import eu.jpereira.appointments.model.calendar.datetime.MonthPeriod;
 import eu.jpereira.appointments.model.calendar.datetime.WorkingPeriod;
+import eu.jpereira.jsimplecalendar.datetime.MonthInYear;
 
 /**
  * This class models the Working Months in a calendar model.
@@ -14,9 +14,9 @@ import eu.jpereira.appointments.model.calendar.datetime.WorkingPeriod;
  * @author jpereira
  * 
  */
-public class WorkingMonths implements WorkingPeriod<MonthPeriod> {
+public class WorkingMonths implements WorkingPeriod<MonthInYear> {
 
-    private List<MonthPeriod> workingMonths;
+    private List<MonthInYear> workingMonths;
     private Map<String, MonthException> excetionWorkingMonths;
 
     /**
@@ -25,18 +25,18 @@ public class WorkingMonths implements WorkingPeriod<MonthPeriod> {
      * @param initialWorkingMonths
      * @param initialExceptionWorkingMonths
      */
-    public WorkingMonths(List<MonthPeriod> initialWorkingMonths, Map<String, MonthException> initialExceptionWorkingMonths) {
+    public WorkingMonths(List<MonthInYear> initialWorkingMonths, Map<String, MonthException> initialExceptionWorkingMonths) {
         this.workingMonths = initialWorkingMonths;
         this.excetionWorkingMonths = initialExceptionWorkingMonths;
     }
 
-    public boolean contains(MonthPeriod month) {
+    public boolean contains(MonthInYear month) {
 
         if (isException(month)) {
             return false;
         }
 
-        for (MonthPeriod workingMonth : this.workingMonths) {
+        for (MonthInYear workingMonth : this.workingMonths) {
             if (workingMonth.equals(month)) {
                 return true;
             }
@@ -44,10 +44,10 @@ public class WorkingMonths implements WorkingPeriod<MonthPeriod> {
         return false;
     }
 
-    private boolean isException(MonthPeriod month) {
+    private boolean isException(MonthInYear month) {
         for (MonthException exception : this.excetionWorkingMonths.values()) {
 
-            for (MonthPeriod exceptionMonthPeriod : exception.getMonths()) {
+            for (MonthInYear exceptionMonthPeriod : exception.getMonths()) {
                 if (exceptionMonthPeriod.equals(month)) {
                     return true;
                 }

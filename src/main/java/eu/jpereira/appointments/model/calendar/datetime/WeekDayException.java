@@ -2,11 +2,13 @@ package eu.jpereira.appointments.model.calendar.datetime;
 
 import java.util.Arrays;
 
+import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
+
 public class WeekDayException {
     private String name;
-    private WeekDayPeriod[] weekDays;
+    private DayInWeek[] weekDays;
 
-    public WeekDayException(String name, WeekDayPeriod... weekDays) {
+    public WeekDayException(String name, DayInWeek... weekDays) {
         this.name = name;
         this.weekDays = weekDays;
     }
@@ -15,7 +17,7 @@ public class WeekDayException {
         return name;
     }
 
-    public WeekDayPeriod[] getWeekDays() {
+    public DayInWeek[] getWeekDays() {
         return Arrays.copyOf(weekDays, weekDays.length);
 
     }

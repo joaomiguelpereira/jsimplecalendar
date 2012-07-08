@@ -5,50 +5,60 @@ import java.util.List;
 import java.util.Map;
 
 import eu.jpereira.appointments.model.calendar.datetime.WeekDayException;
-import eu.jpereira.appointments.model.calendar.datetime.WeekDayPeriod;
 import eu.jpereira.appointments.model.calendar.datetime.WorkingPeriod;
+import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
 
-public class WorkingWeekDays implements WorkingPeriod<WeekDayPeriod> {
+public class WorkingWeekDays implements WorkingPeriod<DayInWeek> {
 
-    private Map<String, WeekDayException> exceptionWeekDay;
-    private List<WeekDayPeriod> workingWeekDays;
+	private Map<String, WeekDayException> exceptionWeekDay;
+	private List<DayInWeek> workingWeekDays;
 
-    public WorkingWeekDays(List<WeekDayPeriod> initialWeekDays, Map<String, WeekDayException> initialExceptionWeekDay) {
-        this.workingWeekDays = initialWeekDays;
-        this.exceptionWeekDay = initialExceptionWeekDay;
-    }
+	public WorkingWeekDays(List<DayInWeek> initialWeekDays,
+			Map<String, WeekDayException> initialExceptionWeekDay) {
+		this.workingWeekDays = initialWeekDays;
+		this.exceptionWeekDay = initialExceptionWeekDay;
+	}
 
-    public boolean contains(WeekDayPeriod dayOfTheWeek) {
+	public boolean contains(DayInWeek dayOfTheWeek) {
 
-        for (WeekDayException exceptionWorkingDays : exceptionWeekDay.values()) {
-            for (WeekDayPeriod weekDay : exceptionWorkingDays.getWeekDays()) {
-                if (weekDay.equals(dayOfTheWeek)) {
-                    return false;
-                }
-            }
-        }
-        for (WeekDayPeriod weekDay : workingWeekDays) {
-            if (weekDay.equals(dayOfTheWeek)) {
-                return true;
-            }
-        }
-        return false;
+		if (isException(dayOfTheWeek)) {
+			return false;
+		}
+		for (DayInWeek weekDay : workingWeekDays) {
+			if (weekDay.equals(dayOfTheWeek)) {
+				return true;
+			}
+		}
+		return false;
 
-    }
+	}
 
-    public void addException(WeekDayException weekDayException) {
-        this.exceptionWeekDay.put(weekDayException.getName(), weekDayException);
-    }
+	private boolean isException(DayInWeek dayOfTheWeek) {
+		// Check exceptions
+		for (WeekDayException exceptionWorkingDays : exceptionWeekDay.values()) {
+			for (DayInWeek weekDay : exceptionWorkingDays.getWeekDays()) {
+				if (weekDay.equals(dayOfTheWeek)) {
+					return true;
+				}
+			}
+		}
+		return false;
 
-    public void removeException(String exceptionName) {
-        this.exceptionWeekDay.remove(exceptionName);
+	}
 
-    }
+	public void addException(WeekDayException weekDayException) {
+		this.exceptionWeekDay.put(weekDayException.getName(), weekDayException);
+	}
 
-    public List<WeekDayException> getExceptions() {
-        List<WeekDayException> exceptions = new ArrayList<WeekDayException>();
-        exceptions.addAll(this.exceptionWeekDay.values());
-        return exceptions;
-    }
+	public void removeException(String exceptionName) {
+		this.exceptionWeekDay.remove(exceptionName);
+
+	}
+
+	public List<WeekDayException> getExceptions() {
+		List<WeekDayException> exceptions = new ArrayList<WeekDayException>();
+		exceptions.addAll(this.exceptionWeekDay.values());
+		return exceptions;
+	}
 
 }
