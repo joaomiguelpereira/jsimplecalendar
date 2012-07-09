@@ -46,7 +46,7 @@ public class MonthsInYearContainer implements DateTimeComponentContainer<MonthIn
 
 	public boolean contains(MonthInYear month) {
 
-		if (isException(month)) {
+		if (isExclusion(month)) {
 			return false;
 		}
 
@@ -58,7 +58,7 @@ public class MonthsInYearContainer implements DateTimeComponentContainer<MonthIn
 		return false;
 	}
 
-	private boolean isException(MonthInYear month) {
+	private boolean isExclusion(MonthInYear month) {
 		for (MonthInYearExclusion exception : this.excludesBackList.values()) {
 
 			for (MonthInYear exceptionMonthPeriod : exception.getMonths()) {

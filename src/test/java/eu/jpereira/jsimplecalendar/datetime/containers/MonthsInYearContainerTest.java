@@ -37,7 +37,20 @@ public class MonthsInYearContainerTest {
     	assertEquals(0, container.getComponentCount());
     }
     @Test
-    public void canAddMonthsExceptions() {
+    public void emptyContainerContainsZeroComponents() {
+    	MonthsInYearContainer container = new MonthsInYearContainer();
+    	assertFalse(container.contains(MonthInYear.valueOf("JANUARY")));
+    }
+    @Test
+    public void canApplyCorrectExclusion() {
+    	MonthsInYearContainer container = new MonthsInYearContainer();
+    	container.addException(new MonthInYearExclusion("ExclusionName", MonthInYear.valueOf("JANUARY")));
+    	container.addException(new MonthInYearExclusion("ExclusionName2", MonthInYear.valueOf("MARCH")));
+    	
+    	assertFalse(container.contains(MonthInYear.valueOf("JANUARY")));
+    	assertFalse(container.contains(MonthInYear.valueOf("MARCH")));
+    }
+    public void canAddExclusions() {
 
         for (MonthInYear month : MonthInYear.allMonths()) {
             assertTrue(monthsInYearContainerUT.contains(month));
@@ -47,7 +60,7 @@ public class MonthsInYearContainerTest {
     }
 
     @Test
-    public void canRemoveMonthsExceptions() {
+    public void canRemoveExclusions() {
 
         for (MonthInYear month : MonthInYear.allMonths()) {
             assertTrue(monthsInYearContainerUT.contains(month));
@@ -60,7 +73,7 @@ public class MonthsInYearContainerTest {
     }
 
     @Test
-    public void canListMonthsExceptions() {
+    public void canListExclusions() {
 
         for (MonthInYear month : MonthInYear.allMonths()) {
             assertTrue(monthsInYearContainerUT.contains(month));
