@@ -1,14 +1,14 @@
-package eu.jpereira.appointments.model.calendar.datetime;
+package eu.jpereira.jsimplecalendar.datetime.containers.exclusions;
 
 import eu.jpereira.jsimplecalendar.datetime.MonthInYear;
 
 
-public class MonthException {
+public class MonthInYearExclusion implements DateTimeComponentExclusion {
 
     private String name;
     private MonthInYear[] months;
 
-    public MonthException(String name, MonthInYear... months) {
+    public MonthInYearExclusion(String name, MonthInYear... months) {
         this.name = name;
         this.months = months;
     }

@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import eu.jpereira.appointments.model.calendar.datetime.WeekDayException;
-import eu.jpereira.appointments.model.calendar.datetime.WorkingPeriod;
 import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
+import eu.jpereira.jsimplecalendar.datetime.containers.DateTimeComponentContainer;
 
-public class WorkingWeekDays implements WorkingPeriod<DayInWeek> {
+public class WorkingWeekDays implements DateTimeComponentContainer<DayInWeek> {
 
 	private Map<String, WeekDayException> exceptionWeekDay;
 	private List<DayInWeek> workingWeekDays;
@@ -60,5 +60,11 @@ public class WorkingWeekDays implements WorkingPeriod<DayInWeek> {
 		exceptions.addAll(this.exceptionWeekDay.values());
 		return exceptions;
 	}
+
+	@Override
+    public int getComponentCount() {
+	    // TODO Auto-generated method stub
+	    return 0;
+    }
 
 }

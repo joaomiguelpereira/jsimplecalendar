@@ -4,13 +4,14 @@ import java.util.List;
 
 import eu.jpereira.appointments.model.calendar.datetime.DateTimePeriodException;
 import eu.jpereira.appointments.model.calendar.datetime.DayOfMonthException;
-import eu.jpereira.appointments.model.calendar.datetime.MonthException;
 import eu.jpereira.appointments.model.calendar.datetime.WeekDayException;
 import eu.jpereira.appointments.model.calendar.datetime.WorkingPeriodFilter;
 import eu.jpereira.appointments.model.calendar.datetime.WorkingTimeException;
 import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
 import eu.jpereira.jsimplecalendar.datetime.MonthInYear;
 import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
+import eu.jpereira.jsimplecalendar.datetime.containers.MonthsInYearContainer;
+import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.MonthInYearExclusion;
 
 /**
  * A calendar model models a calendar that have working months, working days,
@@ -21,7 +22,7 @@ import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
  */
 public abstract class CalendarModel {
 
-    protected WorkingMonths workingMonths;
+    protected MonthsInYearContainer workingMonths;
 
     protected WorkingDayTime workingTime;
 
@@ -31,7 +32,7 @@ public abstract class CalendarModel {
 
     protected WorkingDayOfMonthExceptions workingDayMonthExceptions;
 
-    public CalendarModel(WorkingMonths initialWorkingMonths, WorkingWeekDays initialWorkingWeekDays, WorkingDayTime initialWorkingTime,
+    public CalendarModel(MonthsInYearContainer initialWorkingMonths, WorkingWeekDays initialWorkingWeekDays, WorkingDayTime initialWorkingTime,
             WorkingDateTimePeriodExceptions initialWorkingDateTimePeriodExceptions, WorkingDayOfMonthExceptions workingDayMonthExceptions) {
         this.workingTime = initialWorkingTime;
 
@@ -113,7 +114,7 @@ public abstract class CalendarModel {
 
     }
 
-    public void addMonthException(MonthException exception) {
+    public void addMonthException(MonthInYearExclusion exception) {
         this.workingMonths.addException(exception);
 
     }
@@ -123,7 +124,7 @@ public abstract class CalendarModel {
 
     }
 
-    public List<MonthException> getMonthExceptions() {
+    public List<MonthInYearExclusion> getMonthExceptions() {
         return this.workingMonths.getExceptions();
     }
 

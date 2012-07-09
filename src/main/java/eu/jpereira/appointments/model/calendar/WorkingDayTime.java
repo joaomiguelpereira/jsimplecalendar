@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import eu.jpereira.appointments.model.calendar.datetime.DayTimeInterval;
-import eu.jpereira.appointments.model.calendar.datetime.WorkingPeriod;
 import eu.jpereira.appointments.model.calendar.datetime.WorkingTimeException;
 import eu.jpereira.appointments.model.calendar.exceptions.WorkingTimeExceptionNotFound;
 import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
+import eu.jpereira.jsimplecalendar.datetime.containers.DateTimeComponentContainer;
 
-public class WorkingDayTime implements WorkingPeriod<TimeInDay> {
+public class WorkingDayTime implements DateTimeComponentContainer<TimeInDay> {
 
     private Map<String, WorkingTimeException> exceptions;
     private DayTimeInterval dayTimeSlot;
@@ -53,6 +53,12 @@ public class WorkingDayTime implements WorkingPeriod<TimeInDay> {
             throw new WorkingTimeExceptionNotFound("The exception " + exceptionName + " does not exists in this WorkingTime");
         }
 
+    }
+
+	@Override
+    public int getComponentCount() {
+	    // TODO Auto-generated method stub
+	    return 0;
     }
 
 }

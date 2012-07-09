@@ -6,11 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import eu.jpereira.appointments.model.calendar.datetime.MonthException;
 import eu.jpereira.appointments.model.calendar.datetime.WeekDayException;
 import eu.jpereira.appointments.model.calendar.datetime.WorkingTimeException;
 import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
 import eu.jpereira.jsimplecalendar.datetime.MonthInYear;
+import eu.jpereira.jsimplecalendar.datetime.containers.MonthsInYearContainer;
+import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.MonthInYearExclusion;
 
 public class FakeCalendarModel extends CalendarModel {
 
@@ -49,11 +50,11 @@ public class FakeCalendarModel extends CalendarModel {
         return new WorkingWeekDays(initialWorkingWeekDays, initialWeekDayExceptions);
     }
 
-    protected static WorkingMonths getTestingtWorkingMonths() {
+    protected static MonthsInYearContainer getTestingtWorkingMonths() {
         List<MonthInYear> initialWorkingMonths = new ArrayList<MonthInYear>(12);
         initialWorkingMonths.addAll(Arrays.asList(MonthInYear.allMonths()));
-        Map<String, MonthException> initialExceptionWorkingMonths = new HashMap<String, MonthException>();
-        return new WorkingMonths(initialWorkingMonths, initialExceptionWorkingMonths);
+        Map<String, MonthInYearExclusion> initialExceptionWorkingMonths = new HashMap<String, MonthInYearExclusion>();
+        return new MonthsInYearContainer(initialWorkingMonths, initialExceptionWorkingMonths);
     }
 
     /**
