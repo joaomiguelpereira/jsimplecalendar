@@ -66,10 +66,10 @@ public class WorkingWeekDaysTest {
         // Default calendar is a every month, day from 9:00 to 18:00 with a
         // lunch exception from 12:00 to 13:00
 
-        int initialExceptionsCount = this.testWorkignWeekDays.getExceptions().size();
+        int initialExceptionsCount = this.testWorkignWeekDays.getExclusions().size();
         this.testWorkignWeekDays.addException(new WeekDayException("DayOff", DayInWeek.valueOf("FRIDAY"), DayInWeek.valueOf("MONDAY")));
         this.testWorkignWeekDays.addException(new WeekDayException("DayOff2", DayInWeek.valueOf("FRIDAY"), DayInWeek.valueOf("SATURDAY")));
-        assertEquals(initialExceptionsCount + 2, this.testWorkignWeekDays.getExceptions().size());
+        assertEquals(initialExceptionsCount + 2, this.testWorkignWeekDays.getExclusions().size());
 
     }
 

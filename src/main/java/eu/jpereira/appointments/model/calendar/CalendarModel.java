@@ -6,13 +6,13 @@ import eu.jpereira.appointments.model.calendar.datetime.DateTimePeriodException;
 import eu.jpereira.appointments.model.calendar.datetime.DayOfMonthException;
 import eu.jpereira.appointments.model.calendar.datetime.WeekDayException;
 import eu.jpereira.appointments.model.calendar.datetime.WorkingPeriodFilter;
-import eu.jpereira.appointments.model.calendar.datetime.WorkingTimeException;
 import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
 import eu.jpereira.jsimplecalendar.datetime.MonthInYear;
 import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
 import eu.jpereira.jsimplecalendar.datetime.containers.MonthsInYearContainer;
 import eu.jpereira.jsimplecalendar.datetime.containers.TimeInDayContainer;
 import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.MonthInYearExclusion;
+import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.TimeInDayExclusion;
 
 /**
  * A calendar model models a calendar that have working months, working days,
@@ -56,28 +56,28 @@ public abstract class CalendarModel {
     }
 
     /**
-     * Add a new {@link WorkingTimeException} to the model If you pass an
+     * Add a new {@link TimeInDayExclusion} to the model If you pass an
      * exception with the same name of any already in the model, the old one
      * will be replaced
      * 
      * @param workingTimeException
      */
-    public void addWorkingTimeException(WorkingTimeException workingTimeException) {
+    public void addWorkingTimeException(TimeInDayExclusion workingTimeException) {
         this.workingTime.addException(workingTimeException);
     }
 
     /**
-     * Get a new {@link List} containing all {@link WorkingTimeException}
+     * Get a new {@link List} containing all {@link TimeInDayExclusion}
      * considered by this calendar
      * 
      * @return
      */
-    public List<WorkingTimeException> getWorkingTimeExceptions() {
-        return this.workingTime.getExceptions();
+    public List<TimeInDayExclusion> getWorkingTimeExceptions() {
+        return this.workingTime.getExclusions();
     }
 
     /**
-     * Removes a {@link WorkingTimeException} from the model. If no such name is
+     * Removes a {@link TimeInDayExclusion} from the model. If no such name is
      * found, then this method has no effect on the model or behavior
      * 
      * @param exceptionName
@@ -107,7 +107,7 @@ public abstract class CalendarModel {
     }
 
     public List<WeekDayException> getWeekDayExceptions() {
-        return this.workingWeekDays.getExceptions();
+        return this.workingWeekDays.getExclusions();
     }
 
     public boolean isWorkingMonth(MonthInYear month) {
@@ -126,7 +126,7 @@ public abstract class CalendarModel {
     }
 
     public List<MonthInYearExclusion> getMonthExceptions() {
-        return this.workingMonths.getExceptions();
+        return this.workingMonths.getExclusions();
     }
 
     public boolean isWorkingDateTimePeriod(String startDateTimeExpression, String endDateTimeExpression) {

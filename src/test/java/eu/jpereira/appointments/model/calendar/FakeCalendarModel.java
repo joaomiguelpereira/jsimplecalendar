@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 import eu.jpereira.appointments.model.calendar.datetime.WeekDayException;
-import eu.jpereira.appointments.model.calendar.datetime.WorkingTimeException;
 import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
 import eu.jpereira.jsimplecalendar.datetime.MonthInYear;
 import eu.jpereira.jsimplecalendar.datetime.containers.MonthsInYearContainer;
 import eu.jpereira.jsimplecalendar.datetime.containers.TimeInDayContainer;
 import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.MonthInYearExclusion;
+import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.TimeInDayExclusion;
 
 public class FakeCalendarModel extends CalendarModel {
 
@@ -65,8 +65,8 @@ public class FakeCalendarModel extends CalendarModel {
      */
     protected static TimeInDayContainer getTestingWorkingDayTime() {
 
-        Map<String, WorkingTimeException> initialWorkingTimeExceptions = new HashMap<String, WorkingTimeException>();
-        initialWorkingTimeExceptions.put(LUNCH_EXCEPTION_NAME, new WorkingTimeException(LUNCH_EXCEPTION_NAME, START_LUNCH_TIME, END_LUNCH_TIME));
+        Map<String, TimeInDayExclusion> initialWorkingTimeExceptions = new HashMap<String, TimeInDayExclusion>();
+        initialWorkingTimeExceptions.put(LUNCH_EXCEPTION_NAME, new TimeInDayExclusion(LUNCH_EXCEPTION_NAME, START_LUNCH_TIME, END_LUNCH_TIME));
 
         return new TimeInDayContainer(DEFAULT_START_DAYTIME, DEFAULT_END_DAYTIME, initialWorkingTimeExceptions);
     }

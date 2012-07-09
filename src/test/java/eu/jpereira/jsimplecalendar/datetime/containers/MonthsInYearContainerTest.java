@@ -78,9 +78,9 @@ public class MonthsInYearContainerTest {
         for (MonthInYear month : MonthInYear.allMonths()) {
             assertTrue(monthsInYearContainerUT.contains(month));
         }
-        assertEquals(0, monthsInYearContainerUT.getExceptions().size());
+        assertEquals(0, monthsInYearContainerUT.getExclusions().size());
         monthsInYearContainerUT.addException(new MonthInYearExclusion("Closing", MonthInYear.valueOf("JANUARY")));
-        assertEquals(1, monthsInYearContainerUT.getExceptions().size());
+        assertEquals(1, monthsInYearContainerUT.getExclusions().size());
 
     }
 

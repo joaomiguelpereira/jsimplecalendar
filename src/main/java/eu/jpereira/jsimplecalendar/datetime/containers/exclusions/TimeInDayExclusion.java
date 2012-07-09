@@ -1,12 +1,14 @@
-package eu.jpereira.appointments.model.calendar.datetime;
+package eu.jpereira.jsimplecalendar.datetime.containers.exclusions;
 
 import java.util.Formatter;
 
-public class WorkingTimeException extends DayTimeInterval {
+import eu.jpereira.appointments.model.calendar.datetime.DayTimeInterval;
+
+public class TimeInDayExclusion extends DayTimeInterval implements DateTimeComponentExclusion {
 
     private String name;
 
-    public WorkingTimeException(String name, String startDayTimeExpression, String endDayTimeExpression) {
+    public TimeInDayExclusion(String name, String startDayTimeExpression, String endDayTimeExpression) {
         super(startDayTimeExpression, endDayTimeExpression);
         this.name = name;
 

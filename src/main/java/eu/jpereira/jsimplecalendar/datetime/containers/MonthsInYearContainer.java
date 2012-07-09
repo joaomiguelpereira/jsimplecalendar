@@ -14,7 +14,7 @@ import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.MonthInYearExc
  * @author jpereira
  * 
  */
-public class MonthsInYearContainer implements DateTimeComponentContainer<MonthInYear> {
+public class MonthsInYearContainer implements DateTimeComponentContainer<MonthInYear, MonthInYearExclusion> {
 
 	private List<MonthInYear> monthsBackList;
 	private Map<String, MonthInYearExclusion> excludesBackList;
@@ -81,7 +81,8 @@ public class MonthsInYearContainer implements DateTimeComponentContainer<MonthIn
 
 	}
 
-	public List<MonthInYearExclusion> getExceptions() {
+	@Override
+	public List<MonthInYearExclusion> getExclusions() {
 		List<MonthInYearExclusion> exceptions = new ArrayList<MonthInYearExclusion>();
 		exceptions.addAll(this.excludesBackList.values());
 		return exceptions;

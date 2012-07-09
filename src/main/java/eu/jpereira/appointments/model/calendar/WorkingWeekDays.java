@@ -8,13 +8,12 @@ import eu.jpereira.appointments.model.calendar.datetime.WeekDayException;
 import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
 import eu.jpereira.jsimplecalendar.datetime.containers.DateTimeComponentContainer;
 
-public class WorkingWeekDays implements DateTimeComponentContainer<DayInWeek> {
+public class WorkingWeekDays implements DateTimeComponentContainer<DayInWeek, WeekDayException> {
 
 	private Map<String, WeekDayException> exceptionWeekDay;
 	private List<DayInWeek> workingWeekDays;
 
-	public WorkingWeekDays(List<DayInWeek> initialWeekDays,
-			Map<String, WeekDayException> initialExceptionWeekDay) {
+	public WorkingWeekDays(List<DayInWeek> initialWeekDays, Map<String, WeekDayException> initialExceptionWeekDay) {
 		this.workingWeekDays = initialWeekDays;
 		this.exceptionWeekDay = initialExceptionWeekDay;
 	}
@@ -55,16 +54,16 @@ public class WorkingWeekDays implements DateTimeComponentContainer<DayInWeek> {
 
 	}
 
-	public List<WeekDayException> getExceptions() {
+	@Override
+	public List<WeekDayException> getExclusions() {
 		List<WeekDayException> exceptions = new ArrayList<WeekDayException>();
 		exceptions.addAll(this.exceptionWeekDay.values());
 		return exceptions;
 	}
 
 	@Override
-    public int getComponentCount() {
-	    // TODO Auto-generated method stub
-	    return 0;
-    }
+	public int getComponentCount() { // TODO Auto-generated method stub
+		return 0;
+	}
 
 }

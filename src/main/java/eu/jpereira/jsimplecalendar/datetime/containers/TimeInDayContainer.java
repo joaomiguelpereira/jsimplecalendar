@@ -1,63 +1,77 @@
 package eu.jpereira.jsimplecalendar.datetime.containers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import eu.jpereira.appointments.model.calendar.datetime.DayTimeInterval;
-import eu.jpereira.appointments.model.calendar.datetime.WorkingTimeException;
 import eu.jpereira.appointments.model.calendar.exceptions.WorkingTimeExceptionNotFound;
 import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
+import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.TimeInDayExclusion;
 
-public class TimeInDayContainer implements DateTimeComponentContainer<TimeInDay> {
+public class TimeInDayContainer implements DateTimeComponentContainer<TimeInDay, TimeInDayExclusion> {
 
-    private Map<String, WorkingTimeException> exceptions;
-    private DayTimeInterval dayTimeSlot;
+	private Map<String, TimeInDayExclusion> exclusions;
 
-    public TimeInDayContainer(String startDayTimeExpression, String endDayTimeExpression, Map<String, WorkingTimeException> initialExceptions) {
-        this.dayTimeSlot = new DayTimeInterval(startDayTimeExpression, endDayTimeExpression);
-        this.exceptions = initialExceptions;
-    }
+	private DayTimeInterval dayTimeSlot;
 
-    public void addException(WorkingTimeException workingTimeException) {
-        exceptions.put(workingTimeException.getName(), workingTimeException);
-    }
+	public TimeInDayContainer(String startDayTimeExpression, String endDayTimeExpression, Map<String, TimeInDayExclusion> initialExceptions) {
+		this.dayTimeSlot = new DayTimeInterval(startDayTimeExpression, endDayTimeExpression);
+		this.exclusions = initialExceptions;
+	}
 
-    public boolean contains(TimeInDay dayTime) {
+	/**
+	 * Create an empty container
+	 */
+	public TimeInDayContainer() {
+		initializeEmptyContainer();
+	}
 
-        return this.dayTimeSlot.includes(dayTime) && !isException(dayTime);
+	private void initializeEmptyContainer() {
+		this.dayTimeSlot = new EmptyDayTimeInterval();
+		this.exclusions = new HashMap<String, TimeInDayExclusion>();
 
-    }
+	}
 
-    private boolean isException(TimeInDay dayTime) {
-        for (WorkingTimeException exception : exceptions.values()) {
-            if (exception.includes(dayTime)) {
-                return true;
-            }
-        }
-        return false;
-    }
+	public void addException(TimeInDayExclusion workingTimeException) {
+		exclusions.put(workingTimeException.getName(), workingTimeException);
+	}
 
-    public List<WorkingTimeException> getExceptions() {
-        List<WorkingTimeException> exceptions = new ArrayList<WorkingTimeException>();
-        exceptions.addAll(this.exceptions.values());
-        return exceptions;
+	public boolean contains(TimeInDay dayTime) {
 
-    }
+		return this.dayTimeSlot.includes(dayTime) && !isException(dayTime);
 
-    public void removeException(String exceptionName) {
-        if (this.exceptions.containsKey(exceptionName)) {
-            this.exceptions.remove(exceptionName);
-        } else {
-            throw new WorkingTimeExceptionNotFound("The exception " + exceptionName + " does not exists in this WorkingTime");
-        }
+	}
 
-    }
+	private boolean isException(TimeInDay dayTime) {
+		for (TimeInDayExclusion exception : exclusions.values()) {
+			if (exception.includes(dayTime)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void removeException(String exceptionName) {
+		if (this.exclusions.containsKey(exceptionName)) {
+			this.exclusions.remove(exceptionName);
+		} else {
+			throw new WorkingTimeExceptionNotFound("The exception " + exceptionName + " does not exists in this WorkingTime");
+		}
+
+	}
 
 	@Override
-    public int getComponentCount() {
-	    // TODO Auto-generated method stub
-	    return 0;
-    }
+	public int getComponentCount() {
+		return 0;
+	}
+
+	@Override
+	public List<TimeInDayExclusion> getExclusions() {
+		List<TimeInDayExclusion> exceptions = new ArrayList<TimeInDayExclusion>();
+		exceptions.addAll(this.exclusions.values());
+		return exceptions;
+	}
 
 }

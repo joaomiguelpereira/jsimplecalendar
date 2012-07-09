@@ -9,55 +9,74 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import eu.jpereira.appointments.model.calendar.datetime.WorkingTimeException;
 import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
 import eu.jpereira.jsimplecalendar.datetime.containers.TimeInDayContainer;
+import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.TimeInDayExclusion;
 
 public class TimeInDayContainerTest {
 
-    private TimeInDayContainer testWorkingTime;
+	private TimeInDayContainer timeInDayContainerUT;
 
-    @Before
-    public void setupTestWorkingTime() {
-        testWorkingTime = new TimeInDayContainer("09:00", "18:00", new HashMap<String, WorkingTimeException>());
-    }
+	@Before
+	public void setupTestWorkingTime() {
+		timeInDayContainerUT = new TimeInDayContainer("09:00", "18:00", new HashMap<String, TimeInDayExclusion>());
+	}
 
-    @Test
-    public void canAddWorkingTimeException() {
+	@Test
+	public void canCreateEmptyContainer() {
+		timeInDayContainerUT = new TimeInDayContainer();
+		assertEquals(0, timeInDayContainerUT.getComponentCount());
 
-        WorkingTimeException exception = new WorkingTimeException("siesta", "14:30", "15:00");
-        testWorkingTime.addException(exception);
+	}
 
-        assertTrue(testWorkingTime.contains(TimeInDay.valueOf("14:29")));
-        assertFalse(testWorkingTime.contains(TimeInDay.valueOf("14:30")));
-        assertFalse(testWorkingTime.contains(TimeInDay.valueOf("14:31")));
-        assertFalse(testWorkingTime.contains(TimeInDay.valueOf("14:59")));
-        assertTrue(testWorkingTime.contains(TimeInDay.valueOf("15:00")));
+	@Test
+	public void emptyContainerContainsNoComponents() {
+		timeInDayContainerUT = new TimeInDayContainer();
+		assertFalse(timeInDayContainerUT.contains(TimeInDay.valueOf("0:00")));
+		assertFalse(timeInDayContainerUT.contains(TimeInDay.valueOf("18:00")));
+	}
 
-    }
+	@Test
+	public void emptyContainerContainsNoExclusiong() {
+		timeInDayContainerUT = new TimeInDayContainer();
+		assertEquals(0,timeInDayContainerUT.getExclusions().size());
+	}
 
-    @Test
-    public void canRemoveWorkingTimeExceptions() {
+	@Test
+	public void canAddWorkingTimeException() {
 
-        testWorkingTime.addException(new WorkingTimeException("other", "3:00", "15:00"));
-        assertEquals(1, testWorkingTime.getExceptions().size());
+		TimeInDayExclusion exception = new TimeInDayExclusion("siesta", "14:30", "15:00");
+		timeInDayContainerUT.addException(exception);
 
-        assertFalse(testWorkingTime.contains(TimeInDay.valueOf("14:00")));
+		assertTrue(timeInDayContainerUT.contains(TimeInDay.valueOf("14:29")));
+		assertFalse(timeInDayContainerUT.contains(TimeInDay.valueOf("14:30")));
+		assertFalse(timeInDayContainerUT.contains(TimeInDay.valueOf("14:31")));
+		assertFalse(timeInDayContainerUT.contains(TimeInDay.valueOf("14:59")));
+		assertTrue(timeInDayContainerUT.contains(TimeInDay.valueOf("15:00")));
 
-        testWorkingTime.removeException("other");
+	}
 
-        assertEquals(0, testWorkingTime.getExceptions().size());
-        assertTrue(testWorkingTime.contains(TimeInDay.valueOf("14:00")));
+	@Test
+	public void canRemoveWorkingTimeExceptions() {
 
-    }
+		timeInDayContainerUT.addException(new TimeInDayExclusion("other", "3:00", "15:00"));
+		assertEquals(1, timeInDayContainerUT.getExclusions().size());
 
-    @Test
-    public void canListAllWorkingTimeExceptions() {
+		assertFalse(timeInDayContainerUT.contains(TimeInDay.valueOf("14:00")));
 
-        testWorkingTime.addException(new WorkingTimeException("other", "3:00", "15:00"));
-        assertEquals(1, testWorkingTime.getExceptions().size());
+		timeInDayContainerUT.removeException("other");
 
-       
-    }
+		assertEquals(0, timeInDayContainerUT.getExclusions().size());
+		assertTrue(timeInDayContainerUT.contains(TimeInDay.valueOf("14:00")));
+
+	}
+
+	@Test
+	public void canListAllWorkingTimeExceptions() {
+
+		timeInDayContainerUT.addException(new TimeInDayExclusion("other", "3:00", "15:00"));
+		assertEquals(1, timeInDayContainerUT.getExclusions().size());
+
+	}
 
 }

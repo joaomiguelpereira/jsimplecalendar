@@ -1,9 +1,14 @@
 package eu.jpereira.jsimplecalendar.datetime.containers;
 
-import eu.jpereira.jsimplecalendar.datetime.DateTimeComponent;
 
-public interface DateTimeComponentContainer<T extends DateTimeComponent> {
+import java.util.List;
+
+import eu.jpereira.jsimplecalendar.datetime.DateTimeComponent;
+import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.DateTimeComponentExclusion;
+
+public interface DateTimeComponentContainer<T extends DateTimeComponent, E extends DateTimeComponentExclusion> {
 
     boolean contains(T dateTimeComponent);
     int  getComponentCount();
+    List<E> getExclusions();
 }
