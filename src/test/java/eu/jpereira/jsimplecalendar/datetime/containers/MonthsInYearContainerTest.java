@@ -67,7 +67,7 @@ public class MonthsInYearContainerTest {
         }
         monthsInYearContainerUT.addException(new MonthInYearExclusion("Closing", MonthInYear.valueOf("JANUARY")));
         assertFalse(monthsInYearContainerUT.contains(MonthInYear.valueOf("JANUARY")));
-        monthsInYearContainerUT.removeException("Closing");
+        monthsInYearContainerUT.removeExclusion("Closing");
         assertTrue(monthsInYearContainerUT.contains(MonthInYear.valueOf("JANUARY")));
 
     }

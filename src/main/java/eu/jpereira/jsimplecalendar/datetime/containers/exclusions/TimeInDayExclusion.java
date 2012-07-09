@@ -2,9 +2,9 @@ package eu.jpereira.jsimplecalendar.datetime.containers.exclusions;
 
 import java.util.Formatter;
 
-import eu.jpereira.appointments.model.calendar.datetime.DayTimeInterval;
+import eu.jpereira.jsimplecalendar.datetime.TimeInDayPeriod;
 
-public class TimeInDayExclusion extends DayTimeInterval implements DateTimeComponentExclusion {
+public class TimeInDayExclusion extends TimeInDayPeriod implements DateTimeComponentExclusion {
 
     private String name;
 

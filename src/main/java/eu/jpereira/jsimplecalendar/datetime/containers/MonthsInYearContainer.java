@@ -76,7 +76,8 @@ public class MonthsInYearContainer implements DateTimeComponentContainer<MonthIn
 
 	}
 
-	public void removeException(String name) {
+	@Override
+	public void removeExclusion(String name) {
 		this.excludesBackList.remove(name);
 
 	}

@@ -6,11 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import eu.jpereira.appointments.model.calendar.datetime.WeekDayException;
 import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
 import eu.jpereira.jsimplecalendar.datetime.MonthInYear;
+import eu.jpereira.jsimplecalendar.datetime.containers.DayInWeekContainer;
 import eu.jpereira.jsimplecalendar.datetime.containers.MonthsInYearContainer;
 import eu.jpereira.jsimplecalendar.datetime.containers.TimeInDayContainer;
+import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.DayInWeekExclusion;
 import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.MonthInYearExclusion;
 import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.TimeInDayExclusion;
 
@@ -43,12 +44,12 @@ public class FakeCalendarModel extends CalendarModel {
      * 
      * @return
      */
-    protected static WorkingWeekDays getTestingWorkingWeekDays() {
+    protected static DayInWeekContainer getTestingWorkingWeekDays() {
         List<DayInWeek> initialWorkingWeekDays = new ArrayList<DayInWeek>();
         initialWorkingWeekDays.addAll(Arrays.asList(DayInWeek.allBusinessWeekDays()));
-        Map<String, WeekDayException> initialWeekDayExceptions = new HashMap<String, WeekDayException>();
+        Map<String, DayInWeekExclusion> initialWeekDayExceptions = new HashMap<String, DayInWeekExclusion>();
 
-        return new WorkingWeekDays(initialWorkingWeekDays, initialWeekDayExceptions);
+        return new DayInWeekContainer(initialWorkingWeekDays, initialWeekDayExceptions);
     }
 
     protected static MonthsInYearContainer getTestingtWorkingMonths() {

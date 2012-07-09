@@ -11,4 +11,5 @@ public interface DateTimeComponentContainer<T extends DateTimeComponent, E exten
     boolean contains(T dateTimeComponent);
     int  getComponentCount();
     List<E> getExclusions();
+    void removeExclusion(String exclusionName);
 }

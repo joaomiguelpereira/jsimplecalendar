@@ -64,7 +64,7 @@ public class TimeInDayContainerTest {
 
 		assertFalse(timeInDayContainerUT.contains(TimeInDay.valueOf("14:00")));
 
-		timeInDayContainerUT.removeException("other");
+		timeInDayContainerUT.removeExclusion("other");
 
 		assertEquals(0, timeInDayContainerUT.getExclusions().size());
 		assertTrue(timeInDayContainerUT.contains(TimeInDay.valueOf("14:00")));

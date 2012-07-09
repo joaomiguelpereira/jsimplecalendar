@@ -1,19 +1,18 @@
-package eu.jpereira.appointments.model.calendar;
+package eu.jpereira.jsimplecalendar.datetime.containers;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import eu.jpereira.appointments.model.calendar.datetime.WeekDayException;
 import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
-import eu.jpereira.jsimplecalendar.datetime.containers.DateTimeComponentContainer;
+import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.DayInWeekExclusion;
 
-public class WorkingWeekDays implements DateTimeComponentContainer<DayInWeek, WeekDayException> {
+public class DayInWeekContainer implements DateTimeComponentContainer<DayInWeek, DayInWeekExclusion> {
 
-	private Map<String, WeekDayException> exceptionWeekDay;
+	private Map<String, DayInWeekExclusion> exceptionWeekDay;
 	private List<DayInWeek> workingWeekDays;
 
-	public WorkingWeekDays(List<DayInWeek> initialWeekDays, Map<String, WeekDayException> initialExceptionWeekDay) {
+	public DayInWeekContainer(List<DayInWeek> initialWeekDays, Map<String, DayInWeekExclusion> initialExceptionWeekDay) {
 		this.workingWeekDays = initialWeekDays;
 		this.exceptionWeekDay = initialExceptionWeekDay;
 	}
@@ -34,7 +33,7 @@ public class WorkingWeekDays implements DateTimeComponentContainer<DayInWeek, We
 
 	private boolean isException(DayInWeek dayOfTheWeek) {
 		// Check exceptions
-		for (WeekDayException exceptionWorkingDays : exceptionWeekDay.values()) {
+		for (DayInWeekExclusion exceptionWorkingDays : exceptionWeekDay.values()) {
 			for (DayInWeek weekDay : exceptionWorkingDays.getWeekDays()) {
 				if (weekDay.equals(dayOfTheWeek)) {
 					return true;
@@ -45,7 +44,7 @@ public class WorkingWeekDays implements DateTimeComponentContainer<DayInWeek, We
 
 	}
 
-	public void addException(WeekDayException weekDayException) {
+	public void addException(DayInWeekExclusion weekDayException) {
 		this.exceptionWeekDay.put(weekDayException.getName(), weekDayException);
 	}
 
@@ -55,8 +54,8 @@ public class WorkingWeekDays implements DateTimeComponentContainer<DayInWeek, We
 	}
 
 	@Override
-	public List<WeekDayException> getExclusions() {
-		List<WeekDayException> exceptions = new ArrayList<WeekDayException>();
+	public List<DayInWeekExclusion> getExclusions() {
+		List<DayInWeekExclusion> exceptions = new ArrayList<DayInWeekExclusion>();
 		exceptions.addAll(this.exceptionWeekDay.values());
 		return exceptions;
 	}
@@ -65,5 +64,11 @@ public class WorkingWeekDays implements DateTimeComponentContainer<DayInWeek, We
 	public int getComponentCount() { // TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+    public void removeExclusion(String exclusionName) {
+	    // TODO Auto-generated method stub
+	    
+    }
 
 }

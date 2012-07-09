@@ -1,13 +1,12 @@
-package eu.jpereira.appointments.model.calendar.datetime;
+package eu.jpereira.jsimplecalendar.datetime;
 
-import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
 
-public class DayTimeInterval {
+public class TimeInDayPeriod {
 
     protected TimeInDay startDayTime;
     protected TimeInDay endDayTime;
 
-    public DayTimeInterval(String startDayTimeExpression, String endDayTimeExpression) {
+    public TimeInDayPeriod(String startDayTimeExpression, String endDayTimeExpression) {
         this.startDayTime = TimeInDay.valueOf(startDayTimeExpression);
         this.endDayTime = TimeInDay.valueOf(endDayTimeExpression);
 

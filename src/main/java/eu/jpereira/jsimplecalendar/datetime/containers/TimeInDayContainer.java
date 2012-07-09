@@ -5,8 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import eu.jpereira.appointments.model.calendar.datetime.DayTimeInterval;
 import eu.jpereira.appointments.model.calendar.exceptions.WorkingTimeExceptionNotFound;
+import eu.jpereira.jsimplecalendar.datetime.TimeInDayPeriod;
+import eu.jpereira.jsimplecalendar.datetime.EmptyTimeInDayPeriod;
 import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
 import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.TimeInDayExclusion;
 
@@ -14,10 +15,10 @@ public class TimeInDayContainer implements DateTimeComponentContainer<TimeInDay,
 
 	private Map<String, TimeInDayExclusion> exclusions;
 
-	private DayTimeInterval dayTimeSlot;
+	private TimeInDayPeriod dayTimeSlot;
 
 	public TimeInDayContainer(String startDayTimeExpression, String endDayTimeExpression, Map<String, TimeInDayExclusion> initialExceptions) {
-		this.dayTimeSlot = new DayTimeInterval(startDayTimeExpression, endDayTimeExpression);
+		this.dayTimeSlot = new TimeInDayPeriod(startDayTimeExpression, endDayTimeExpression);
 		this.exclusions = initialExceptions;
 	}
 
@@ -29,7 +30,7 @@ public class TimeInDayContainer implements DateTimeComponentContainer<TimeInDay,
 	}
 
 	private void initializeEmptyContainer() {
-		this.dayTimeSlot = new EmptyDayTimeInterval();
+		this.dayTimeSlot = new EmptyTimeInDayPeriod();
 		this.exclusions = new HashMap<String, TimeInDayExclusion>();
 
 	}
@@ -53,12 +54,8 @@ public class TimeInDayContainer implements DateTimeComponentContainer<TimeInDay,
 		return false;
 	}
 
-	public void removeException(String exceptionName) {
-		if (this.exclusions.containsKey(exceptionName)) {
-			this.exclusions.remove(exceptionName);
-		} else {
-			throw new WorkingTimeExceptionNotFound("The exception " + exceptionName + " does not exists in this WorkingTime");
-		}
+	public void removeExclusion(String exclusionName) {
+		this.exclusions.remove(exclusionName);
 
 	}
 

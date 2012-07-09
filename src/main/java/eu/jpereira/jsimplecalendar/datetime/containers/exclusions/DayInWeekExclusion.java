@@ -1,15 +1,14 @@
-package eu.jpereira.appointments.model.calendar.datetime;
+package eu.jpereira.jsimplecalendar.datetime.containers.exclusions;
 
 import java.util.Arrays;
 
 import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
-import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.DateTimeComponentExclusion;
 
-public class WeekDayException  implements DateTimeComponentExclusion{
+public class DayInWeekExclusion  implements DateTimeComponentExclusion{
     private String name;
     private DayInWeek[] weekDays;
 
-    public WeekDayException(String name, DayInWeek... weekDays) {
+    public DayInWeekExclusion(String name, DayInWeek... weekDays) {
         this.name = name;
         this.weekDays = weekDays;
     }
