@@ -29,8 +29,8 @@ public class MonthsInYearContainer implements DateTimeComponentContainer<MonthIn
 	 * the factory methods
 	 */
 	private void initializeEmptyContainer() {
-		this.excludesBackList = new HashMap<>();
-		this.monthsBackList = new ArrayList<>();
+		this.excludesBackList = new HashMap<String,MonthInYearExclusion>();
+		this.monthsBackList = new ArrayList<MonthInYear>();
 	}
 
 	/**

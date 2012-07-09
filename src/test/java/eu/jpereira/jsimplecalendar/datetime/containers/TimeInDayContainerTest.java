@@ -1,4 +1,4 @@
-package eu.jpereira.appointments.model.calendar;
+package eu.jpereira.jsimplecalendar.datetime.containers;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -11,14 +11,15 @@ import org.junit.Test;
 
 import eu.jpereira.appointments.model.calendar.datetime.WorkingTimeException;
 import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
+import eu.jpereira.jsimplecalendar.datetime.containers.TimeInDayContainer;
 
-public class WorkingDayTimeTest {
+public class TimeInDayContainerTest {
 
-    private WorkingDayTime testWorkingTime;
+    private TimeInDayContainer testWorkingTime;
 
     @Before
     public void setupTestWorkingTime() {
-        testWorkingTime = new WorkingDayTime("09:00", "18:00", new HashMap<String, WorkingTimeException>());
+        testWorkingTime = new TimeInDayContainer("09:00", "18:00", new HashMap<String, WorkingTimeException>());
     }
 
     @Test

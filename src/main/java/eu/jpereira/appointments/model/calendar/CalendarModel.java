@@ -11,6 +11,7 @@ import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
 import eu.jpereira.jsimplecalendar.datetime.MonthInYear;
 import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
 import eu.jpereira.jsimplecalendar.datetime.containers.MonthsInYearContainer;
+import eu.jpereira.jsimplecalendar.datetime.containers.TimeInDayContainer;
 import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.MonthInYearExclusion;
 
 /**
@@ -24,7 +25,7 @@ public abstract class CalendarModel {
 
     protected MonthsInYearContainer workingMonths;
 
-    protected WorkingDayTime workingTime;
+    protected TimeInDayContainer workingTime;
 
     protected WorkingWeekDays workingWeekDays;
 
@@ -32,7 +33,7 @@ public abstract class CalendarModel {
 
     protected WorkingDayOfMonthExceptions workingDayMonthExceptions;
 
-    public CalendarModel(MonthsInYearContainer initialWorkingMonths, WorkingWeekDays initialWorkingWeekDays, WorkingDayTime initialWorkingTime,
+    public CalendarModel(MonthsInYearContainer initialWorkingMonths, WorkingWeekDays initialWorkingWeekDays, TimeInDayContainer initialWorkingTime,
             WorkingDateTimePeriodExceptions initialWorkingDateTimePeriodExceptions, WorkingDayOfMonthExceptions workingDayMonthExceptions) {
         this.workingTime = initialWorkingTime;
 

@@ -4,8 +4,9 @@ import java.io.Console;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import sun.security.x509.IPAddressName;
+import org.junit.Ignore;
 
+@Ignore
 public class RegexTest {
 
     public static void main(String... args) {

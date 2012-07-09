@@ -1,4 +1,4 @@
-package eu.jpereira.appointments.model.calendar;
+package eu.jpereira.jsimplecalendar.datetime.containers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,19 +8,18 @@ import eu.jpereira.appointments.model.calendar.datetime.DayTimeInterval;
 import eu.jpereira.appointments.model.calendar.datetime.WorkingTimeException;
 import eu.jpereira.appointments.model.calendar.exceptions.WorkingTimeExceptionNotFound;
 import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
-import eu.jpereira.jsimplecalendar.datetime.containers.DateTimeComponentContainer;
 
-public class WorkingDayTime implements DateTimeComponentContainer<TimeInDay> {
+public class TimeInDayContainer implements DateTimeComponentContainer<TimeInDay> {
 
     private Map<String, WorkingTimeException> exceptions;
     private DayTimeInterval dayTimeSlot;
 
-    WorkingDayTime(String startDayTimeExpression, String endDayTimeExpression, Map<String, WorkingTimeException> initialExceptions) {
+    public TimeInDayContainer(String startDayTimeExpression, String endDayTimeExpression, Map<String, WorkingTimeException> initialExceptions) {
         this.dayTimeSlot = new DayTimeInterval(startDayTimeExpression, endDayTimeExpression);
         this.exceptions = initialExceptions;
     }
 
-    void addException(WorkingTimeException workingTimeException) {
+    public void addException(WorkingTimeException workingTimeException) {
         exceptions.put(workingTimeException.getName(), workingTimeException);
     }
 
@@ -39,14 +38,14 @@ public class WorkingDayTime implements DateTimeComponentContainer<TimeInDay> {
         return false;
     }
 
-    List<WorkingTimeException> getExceptions() {
+    public List<WorkingTimeException> getExceptions() {
         List<WorkingTimeException> exceptions = new ArrayList<WorkingTimeException>();
         exceptions.addAll(this.exceptions.values());
         return exceptions;
 
     }
 
-    void removeException(String exceptionName) {
+    public void removeException(String exceptionName) {
         if (this.exceptions.containsKey(exceptionName)) {
             this.exceptions.remove(exceptionName);
         } else {

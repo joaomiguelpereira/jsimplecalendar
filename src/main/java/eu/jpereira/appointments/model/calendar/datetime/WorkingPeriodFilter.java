@@ -1,8 +1,8 @@
 package eu.jpereira.appointments.model.calendar.datetime;
 
-import eu.jpereira.appointments.model.calendar.WorkingDayTime;
 import eu.jpereira.jsimplecalendar.datetime.DayInMonth;
 import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
+import eu.jpereira.jsimplecalendar.datetime.containers.TimeInDayContainer;
 
 public class WorkingPeriodFilter {
 
@@ -14,7 +14,7 @@ public class WorkingPeriodFilter {
         return this;
     }
 
-    public boolean match(WorkingDayTime workingDayTime) {
+    public boolean match(TimeInDayContainer workingDayTime) {
         return workingDayTime.contains(this.dayTime);
     }
 

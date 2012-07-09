@@ -11,6 +11,7 @@ import eu.jpereira.appointments.model.calendar.datetime.WorkingTimeException;
 import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
 import eu.jpereira.jsimplecalendar.datetime.MonthInYear;
 import eu.jpereira.jsimplecalendar.datetime.containers.MonthsInYearContainer;
+import eu.jpereira.jsimplecalendar.datetime.containers.TimeInDayContainer;
 import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.MonthInYearExclusion;
 
 public class FakeCalendarModel extends CalendarModel {
@@ -62,12 +63,12 @@ public class FakeCalendarModel extends CalendarModel {
      * 
      * @return
      */
-    protected static WorkingDayTime getTestingWorkingDayTime() {
+    protected static TimeInDayContainer getTestingWorkingDayTime() {
 
         Map<String, WorkingTimeException> initialWorkingTimeExceptions = new HashMap<String, WorkingTimeException>();
         initialWorkingTimeExceptions.put(LUNCH_EXCEPTION_NAME, new WorkingTimeException(LUNCH_EXCEPTION_NAME, START_LUNCH_TIME, END_LUNCH_TIME));
 
-        return new WorkingDayTime(DEFAULT_START_DAYTIME, DEFAULT_END_DAYTIME, initialWorkingTimeExceptions);
+        return new TimeInDayContainer(DEFAULT_START_DAYTIME, DEFAULT_END_DAYTIME, initialWorkingTimeExceptions);
     }
 
 }
