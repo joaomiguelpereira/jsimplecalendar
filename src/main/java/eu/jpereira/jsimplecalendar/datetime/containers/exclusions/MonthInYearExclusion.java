@@ -1,24 +1,30 @@
 package eu.jpereira.jsimplecalendar.datetime.containers.exclusions;
 
+import eu.jpereira.jsimplecalendar.datetime.DateTimeComponent;
 import eu.jpereira.jsimplecalendar.datetime.MonthInYear;
 
 
 public class MonthInYearExclusion implements DateTimeComponentExclusion {
 
     private String name;
-    private MonthInYear[] months;
+    private MonthInYear excludedMonthInYear;
 
-    public MonthInYearExclusion(String name, MonthInYear... months) {
+    private MonthInYearExclusion(String name, MonthInYear excludedMonthInYear) {
         this.name = name;
-        this.months = months;
+        this.excludedMonthInYear = excludedMonthInYear;
     }
 
+    public static MonthInYearExclusion valueOf(String exclusionName, MonthInYear excludedMonthInYear) {
+    	return new MonthInYearExclusion(exclusionName, excludedMonthInYear);
+    }
     public String getName() {
         return name;
     }
 
-    public MonthInYear[] getMonths() {
-        return months;
+	@Override
+    public boolean isExcluded(DateTimeComponent dateTimeComponent) {
+	    
+	    return this.excludedMonthInYear.equals(dateTimeComponent);
     }
 
 }

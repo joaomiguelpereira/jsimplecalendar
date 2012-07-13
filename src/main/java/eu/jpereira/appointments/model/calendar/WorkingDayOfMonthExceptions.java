@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import eu.jpereira.appointments.model.calendar.datetime.DayOfMonthException;
-import eu.jpereira.jsimplecalendar.datetime.DayInMonth;
+import eu.jpereira.jsimplecalendar.datetime.DayMonthInYear;
 
 public class WorkingDayOfMonthExceptions {
 
@@ -18,7 +18,7 @@ public class WorkingDayOfMonthExceptions {
     }
 
     boolean isWorkingDayOfMonth(String dayOfMonthExpression) {
-        DayInMonth dayOfMonth = DayInMonth.valueOf(dayOfMonthExpression);
+        DayMonthInYear dayOfMonth = DayMonthInYear.valueOf(dayOfMonthExpression);
         for ( DayOfMonthException exception : exceptions.values() ) {
             if ( exception.includes(dayOfMonth)) {
                 return false;

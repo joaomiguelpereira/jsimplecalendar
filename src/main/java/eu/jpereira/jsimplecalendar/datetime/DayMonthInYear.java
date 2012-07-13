@@ -7,7 +7,7 @@ import java.util.Formatter;
 
 import eu.jpereira.appointments.model.calendar.exceptions.InvalidDayOfMonthExpressionException;
 
-public final class DayInMonth implements DateTimeComponent, Comparable<DayInMonth> {
+public final class DayMonthInYear implements DateTimeComponent, Comparable<DayMonthInYear> {
 
 	private static final int MAX_DAY = 31;
 	private static final int MAX_MONTH = 12;
@@ -18,7 +18,7 @@ public final class DayInMonth implements DateTimeComponent, Comparable<DayInMont
 	private int day;
 	private int month;
 
-	private DayInMonth(int day, int month) {
+	private DayMonthInYear(int day, int month) {
 		this.day = day;
 		this.month = month;
 
@@ -32,13 +32,13 @@ public final class DayInMonth implements DateTimeComponent, Comparable<DayInMont
 	 *            format dd/MM
 	 * @return
 	 */
-	public static DayInMonth valueOf(String dayOfMonthExpression) {
+	public static DayMonthInYear valueOf(String dayOfMonthExpression) {
 
 		return parse(dayOfMonthExpression);
 
 	}
 
-	private static DayInMonth parse(String dayOfMonthExpression) {
+	private static DayMonthInYear parse(String dayOfMonthExpression) {
 		String[] components = dayOfMonthExpression.trim().split("/");
 		if (components.length != 2) {
 			throw new InvalidDayOfMonthExpressionException("The provided expression is not in the correct format: dd/MM");
@@ -49,7 +49,7 @@ public final class DayInMonth implements DateTimeComponent, Comparable<DayInMont
 			int day = Integer.valueOf(components[0]);
 			int month = Integer.valueOf(components[1]);
 			checkConsistency(day, month);
-			return new DayInMonth(day, month);
+			return new DayMonthInYear(day, month);
 
 		} catch (NumberFormatException e) {
 			Formatter fmt = new Formatter();
@@ -97,13 +97,13 @@ public final class DayInMonth implements DateTimeComponent, Comparable<DayInMont
 			return true;
 		}
 		if (other.getClass().equals(this.getClass())) {
-			DayInMonth otherDayOfMonth = (DayInMonth) other;
+			DayMonthInYear otherDayOfMonth = (DayMonthInYear) other;
 			return this.day == otherDayOfMonth.day && this.month == otherDayOfMonth.month;
 		}
 		return false;
 	}
 
-	public int compareTo(DayInMonth otherDayInMonth) {
+	public int compareTo(DayMonthInYear otherDayInMonth) {
 
 		int result = this.day - otherDayInMonth.day;
 		result = result + (this.month - otherDayInMonth.month) * ASSUMED_DAYS_IN_A_MONTH;

@@ -1,15 +1,15 @@
 package eu.jpereira.appointments.model.calendar.datetime;
 
-import eu.jpereira.jsimplecalendar.datetime.DayInMonth;
+import eu.jpereira.jsimplecalendar.datetime.DayMonthInYear;
 
 public class DayOfMonthException {
 
     
     private String name;
-    private DayInMonth dayOfTheMonthException;
+    private DayMonthInYear dayOfTheMonthException;
 
     public DayOfMonthException(String name, String dayOfMonthExpression) {
-        dayOfTheMonthException = DayInMonth.valueOf(dayOfMonthExpression);
+        dayOfTheMonthException = DayMonthInYear.valueOf(dayOfMonthExpression);
         this.name = name;
     }
 
@@ -18,7 +18,7 @@ public class DayOfMonthException {
         return this.name;
     }
 
-    public boolean includes(DayInMonth dayOfMonth) {
+    public boolean includes(DayMonthInYear dayOfMonth) {
         return this.dayOfTheMonthException.equals(dayOfMonth);
       
     }

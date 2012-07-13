@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import eu.jpereira.jsimplecalendar.datetime.exceptions.IllegalDateTimeComponentValueException;
 
-public class TimeInDayTest {
+public class HourMinuteInDayTest {
 
     @Test
     public void canConstructDayTimeWithoutPrefixes() {
@@ -22,49 +22,49 @@ public class TimeInDayTest {
 
     @Test(expected=IllegalDateTimeComponentValueException.class)
     public void cantConstructIncompleteDayTimeNoMinutes() {
-        TimeInDay.valueOf("1:");
+        HourMinuteInDay.valueOf("1:");
     }
 
     @Test(expected=IllegalDateTimeComponentValueException.class)
     public void cantConstructIncompleteDayTimeNoHour() {
-        TimeInDay.valueOf(":30");
+        HourMinuteInDay.valueOf(":30");
     }
 
 
     @Test(expected=IllegalDateTimeComponentValueException.class)
     public void cantConstructInvalidDayTimeUpperBoundary() {
-        TimeInDay.valueOf("24:00");
+        HourMinuteInDay.valueOf("24:00");
         
     }
     @Test(expected=IllegalDateTimeComponentValueException.class)
     public void cantConstructInvalidDayTimeLowerBoundary() {
-        TimeInDay.valueOf("-1:00");
+        HourMinuteInDay.valueOf("-1:00");
         
     }
     
     @Test
     public void testEquals() {
-        TimeInDay d1 = TimeInDay.valueOf("9:00");
-        TimeInDay d2 = TimeInDay.valueOf("09:00");
+        HourMinuteInDay d1 = HourMinuteInDay.valueOf("9:00");
+        HourMinuteInDay d2 = HourMinuteInDay.valueOf("09:00");
         assertTrue(d1.equals(d2));
         assertTrue(d2.equals(d1));
         
-        assertFalse(d2.equals(TimeInDay.valueOf("09:01")));
+        assertFalse(d2.equals(HourMinuteInDay.valueOf("09:01")));
         assertFalse(d2.equals(null));
         
     }
     
     @Test
     public void testGreater() {
-        TimeInDay d1 = TimeInDay.valueOf("9:00");
-        TimeInDay d2 = TimeInDay.valueOf("9:01");
+        HourMinuteInDay d1 = HourMinuteInDay.valueOf("9:00");
+        HourMinuteInDay d2 = HourMinuteInDay.valueOf("9:01");
         
         assertTrue(d1.compareTo(d2) < 0);
         assertTrue(d2.compareTo(d1) > 0);
         
         assertEquals(d1.compareTo(d2), d2.compareTo(d1)*-1);
         
-        assertTrue(d1.compareTo(TimeInDay.valueOf("09:00"))==0);
+        assertTrue(d1.compareTo(HourMinuteInDay.valueOf("09:00"))==0);
         
     }
 
@@ -80,7 +80,7 @@ public class TimeInDayTest {
                 String testMinute = prefixZero(m);
 
                 String testData = testHour + ":" + testMinute;
-                TimeInDay dayTime = TimeInDay.valueOf(testData);
+                HourMinuteInDay dayTime = HourMinuteInDay.valueOf(testData);
                 assertEquals(h, dayTime.getHour());
                 assertEquals(m, dayTime.getMinute());
             }
@@ -99,7 +99,7 @@ public class TimeInDayTest {
         for (int h = 0; h < hours; h++) {
             for (int m = 0; m < minutes; m++) {
                 String testData = h + ":" + m;
-                TimeInDay dayTime = TimeInDay.valueOf(testData);
+                HourMinuteInDay dayTime = HourMinuteInDay.valueOf(testData);
                 assertEquals(h, dayTime.getHour());
                 assertEquals(m, dayTime.getMinute());
             }

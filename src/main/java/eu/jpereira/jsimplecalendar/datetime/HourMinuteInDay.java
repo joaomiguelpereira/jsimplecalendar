@@ -2,19 +2,19 @@ package eu.jpereira.jsimplecalendar.datetime;
 
 import eu.jpereira.jsimplecalendar.datetime.exceptions.IllegalDateTimeComponentValueException;
 
-public class TimeInDay implements Comparable<TimeInDay>, DateTimeComponent {
+public class HourMinuteInDay implements Comparable<HourMinuteInDay>, DateTimeComponent {
 
     private static final int UNDEFINED = -1;
     private int hour = UNDEFINED;
     private int minute = UNDEFINED;
 
-    private TimeInDay(String dayTimeExpression) {
+    private HourMinuteInDay(String dayTimeExpression) {
         parseDayTimeExpression(dayTimeExpression);
 
     }
 
-    public static TimeInDay valueOf(String dayTimeExpression) {
-        TimeInDay dayTime = new TimeInDay(dayTimeExpression);
+    public static HourMinuteInDay valueOf(String dayTimeExpression) {
+        HourMinuteInDay dayTime = new HourMinuteInDay(dayTimeExpression);
         return dayTime;
     }
 
@@ -65,15 +65,15 @@ public class TimeInDay implements Comparable<TimeInDay>, DateTimeComponent {
         if (other == null) {
             return false;
         }
-        if (other instanceof TimeInDay) {
-            TimeInDay otherDayTime = (TimeInDay) other;
+        if (other instanceof HourMinuteInDay) {
+            HourMinuteInDay otherDayTime = (HourMinuteInDay) other;
             return (this.hour == otherDayTime.hour && this.minute == otherDayTime.minute);
         } else {
             return false;
         }
     }
 
-    public int compareTo(TimeInDay o) {
+    public int compareTo(HourMinuteInDay o) {
 
         
         int hourDiff = this.hour - o.hour;

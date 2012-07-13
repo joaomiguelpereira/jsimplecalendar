@@ -7,13 +7,13 @@ import eu.jpereira.appointments.model.calendar.datetime.DayOfMonthException;
 import eu.jpereira.appointments.model.calendar.datetime.WorkingPeriodFilter;
 import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
 import eu.jpereira.jsimplecalendar.datetime.MonthInYear;
-import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
+import eu.jpereira.jsimplecalendar.datetime.HourMinuteInDay;
 import eu.jpereira.jsimplecalendar.datetime.containers.DayInWeekContainer;
 import eu.jpereira.jsimplecalendar.datetime.containers.MonthsInYearContainer;
-import eu.jpereira.jsimplecalendar.datetime.containers.TimeInDayContainer;
+import eu.jpereira.jsimplecalendar.datetime.containers.HourMinuteInDayContainer;
 import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.DayInWeekExclusion;
 import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.MonthInYearExclusion;
-import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.TimeInDayExclusion;
+import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.HourMinuteInDayExclusion;
 
 /**
  * A calendar model models a calendar that have working months, working days,
@@ -26,7 +26,7 @@ public abstract class CalendarModel {
 
     protected MonthsInYearContainer workingMonths;
 
-    protected TimeInDayContainer workingTime;
+    protected HourMinuteInDayContainer workingTime;
 
     protected DayInWeekContainer workingWeekDays;
 
@@ -34,7 +34,7 @@ public abstract class CalendarModel {
 
     protected WorkingDayOfMonthExceptions workingDayMonthExceptions;
 
-    public CalendarModel(MonthsInYearContainer initialWorkingMonths, DayInWeekContainer initialWorkingWeekDays, TimeInDayContainer initialWorkingTime,
+    public CalendarModel(MonthsInYearContainer initialWorkingMonths, DayInWeekContainer initialWorkingWeekDays, HourMinuteInDayContainer initialWorkingTime,
             WorkingDateTimePeriodExceptions initialWorkingDateTimePeriodExceptions, WorkingDayOfMonthExceptions workingDayMonthExceptions) {
         this.workingTime = initialWorkingTime;
 
@@ -49,36 +49,36 @@ public abstract class CalendarModel {
      * of the day
      * 
      * @param dayTimeExpression
-     *            A time expression. See {@link TimeInDay}
+     *            A time expression. See {@link HourMinuteInDay}
      * @return
      */
     public boolean isWorkingTime(String dayTimeExpression) {
-        return this.workingTime.contains(TimeInDay.valueOf(dayTimeExpression));
+        return this.workingTime.contains(HourMinuteInDay.valueOf(dayTimeExpression));
     }
 
     /**
-     * Add a new {@link TimeInDayExclusion} to the model If you pass an
+     * Add a new {@link HourMinuteInDayExclusion} to the model If you pass an
      * exception with the same name of any already in the model, the old one
      * will be replaced
      * 
      * @param workingTimeException
      */
-    public void addWorkingTimeException(TimeInDayExclusion workingTimeException) {
-        this.workingTime.addException(workingTimeException);
+    public void addWorkingTimeException(HourMinuteInDayExclusion workingTimeException) {
+        this.workingTime.addExclusion(workingTimeException);
     }
 
     /**
-     * Get a new {@link List} containing all {@link TimeInDayExclusion}
+     * Get a new {@link List} containing all {@link HourMinuteInDayExclusion}
      * considered by this calendar
      * 
      * @return
      */
-    public List<TimeInDayExclusion> getWorkingTimeExceptions() {
+    public List<HourMinuteInDayExclusion> getWorkingTimeExceptions() {
         return this.workingTime.getExclusions();
     }
 
     /**
-     * Removes a {@link TimeInDayExclusion} from the model. If no such name is
+     * Removes a {@link HourMinuteInDayExclusion} from the model. If no such name is
      * found, then this method has no effect on the model or behavior
      * 
      * @param exceptionName
@@ -100,11 +100,11 @@ public abstract class CalendarModel {
     }
 
     public void addWeekDayException(DayInWeekExclusion weekDayException) {
-        this.workingWeekDays.addException(weekDayException);
+        this.workingWeekDays.addExclusion(weekDayException);
     }
 
     public void removeWeekDayException(String exceptionName) {
-        this.workingWeekDays.removeException(exceptionName);
+        this.workingWeekDays.removeExclusion(exceptionName);
     }
 
     public List<DayInWeekExclusion> getWeekDayExceptions() {
@@ -117,7 +117,7 @@ public abstract class CalendarModel {
     }
 
     public void addMonthException(MonthInYearExclusion exception) {
-        this.workingMonths.addException(exception);
+        this.workingMonths.addExclusion(exception);
 
     }
 

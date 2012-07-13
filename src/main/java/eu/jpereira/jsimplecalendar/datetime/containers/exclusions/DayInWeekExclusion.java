@@ -1,24 +1,29 @@
 package eu.jpereira.jsimplecalendar.datetime.containers.exclusions;
 
-import java.util.Arrays;
-
+import eu.jpereira.jsimplecalendar.datetime.DateTimeComponent;
 import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
 
 public class DayInWeekExclusion  implements DateTimeComponentExclusion{
     private String name;
-    private DayInWeek[] weekDays;
+    private DayInWeek dayInWeekExclusion;
 
-    public DayInWeekExclusion(String name, DayInWeek... weekDays) {
+    private DayInWeekExclusion(String name, DayInWeek dayInWeekExclusion) {
         this.name = name;
-        this.weekDays = weekDays;
+        this.dayInWeekExclusion = dayInWeekExclusion;
     }
 
     public String getName() {
         return name;
     }
 
-    public DayInWeek[] getWeekDays() {
-        return Arrays.copyOf(weekDays, weekDays.length);
-
+	@Override
+    public boolean isExcluded(DateTimeComponent dateTimeComponent) {
+	    return this.dayInWeekExclusion.equals(dateTimeComponent);
     }
+
+	public static DateTimeComponentExclusion valueOf(String exclusionName, String dayInWeekExpression) {
+	    
+	    return new DayInWeekExclusion(exclusionName, DayInWeek.valueOf(dayInWeekExpression));
+    }
+
 }

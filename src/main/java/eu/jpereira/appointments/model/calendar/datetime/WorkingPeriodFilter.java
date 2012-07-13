@@ -1,24 +1,24 @@
 package eu.jpereira.appointments.model.calendar.datetime;
 
-import eu.jpereira.jsimplecalendar.datetime.DayInMonth;
-import eu.jpereira.jsimplecalendar.datetime.TimeInDay;
-import eu.jpereira.jsimplecalendar.datetime.containers.TimeInDayContainer;
+import eu.jpereira.jsimplecalendar.datetime.DayMonthInYear;
+import eu.jpereira.jsimplecalendar.datetime.HourMinuteInDay;
+import eu.jpereira.jsimplecalendar.datetime.containers.HourMinuteInDayContainer;
 
 public class WorkingPeriodFilter {
 
-    private TimeInDay dayTime;
-    private DayInMonth dayOfMonth;
+    private HourMinuteInDay dayTime;
+    private DayMonthInYear dayOfMonth;
 
-    public WorkingPeriodFilter setDayTime(TimeInDay dayTimeToFilter) {
+    public WorkingPeriodFilter setDayTime(HourMinuteInDay dayTimeToFilter) {
         this.dayTime = dayTimeToFilter;
         return this;
     }
 
-    public boolean match(TimeInDayContainer workingDayTime) {
+    public boolean match(HourMinuteInDayContainer workingDayTime) {
         return workingDayTime.contains(this.dayTime);
     }
 
-    public WorkingPeriodFilter setDayOfMonth(DayInMonth dayOfMonth) {
+    public WorkingPeriodFilter setDayOfMonth(DayMonthInYear dayOfMonth) {
         this.dayOfMonth = dayOfMonth;
         return this;
     }

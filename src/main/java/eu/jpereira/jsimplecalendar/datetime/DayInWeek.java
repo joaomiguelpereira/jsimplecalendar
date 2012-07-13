@@ -4,16 +4,19 @@ import eu.jpereira.jsimplecalendar.datetime.exceptions.IllegalDateTimeComponentV
 
 public class DayInWeek implements DateTimeComponent {
 
+	// Kinda of hack, or not? I have no way to implemnt an interface with an
+	// enum, so here it goes....
+
 	private WeekDayEnum backedWeekDayEnum;
 
 	private DayInWeek(WeekDayEnum weekDayEnum) {
 		this.backedWeekDayEnum = weekDayEnum;
 	}
 
-	public static DayInWeek[] allBusinessWeekDays() {
-		DayInWeek[] weekDayPeriods = new DayInWeek[WeekDayEnum.allBusinessWeekDays().length];
+	public static DayInWeek[] allDaysInWeek() {
+		DayInWeek[] weekDayPeriods = new DayInWeek[WeekDayEnum.values().length];
 		int index = 0;
-		for (WeekDayEnum weekDayEnum : WeekDayEnum.allBusinessWeekDays()) {
+		for (WeekDayEnum weekDayEnum : WeekDayEnum.values()) {
 			weekDayPeriods[index++] = new DayInWeek(weekDayEnum);
 		}
 		return weekDayPeriods;
@@ -29,10 +32,10 @@ public class DayInWeek implements DateTimeComponent {
 		try {
 			WeekDayEnum enumValue = WeekDayEnum.valueOf(weekDay);
 			return new DayInWeek(enumValue);
-		} catch ( IllegalArgumentException ile) {
-			throw new IllegalDateTimeComponentValueException("Invalid value for day in Week.",ile);
+		} catch (IllegalArgumentException ile) {
+			throw new IllegalDateTimeComponentValueException("Invalid value for day in Week.", ile);
 		}
-		
+
 	}
 
 	@Override
@@ -64,6 +67,11 @@ public class DayInWeek implements DateTimeComponent {
 		}
 
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return this.backedWeekDayEnum.toString();
 	}
 
 }

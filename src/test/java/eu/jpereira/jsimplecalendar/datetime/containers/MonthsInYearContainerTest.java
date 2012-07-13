@@ -23,29 +23,22 @@ public class MonthsInYearContainerTest {
 
     @Before
     public void setup() {
-
-        List<MonthInYear> initialWorkingMonths = new ArrayList<MonthInYear>(12);
-        initialWorkingMonths.addAll(Arrays.asList(MonthInYear.allMonths()));
-        Map<String, MonthInYearExclusion> initialExceptionWorkingMonths = new HashMap<String, MonthInYearExclusion>();
-        this.monthsInYearContainerUT = new MonthsInYearContainer(initialWorkingMonths, initialExceptionWorkingMonths);
+        this.monthsInYearContainerUT = new MonthsInYearContainer();
     }
     
     
     @Test
-    public void canCreateEmptyContainer() {
+    public void canCreateFullContainer() {
     	MonthsInYearContainer container = new MonthsInYearContainer();
-    	assertEquals(0, container.getComponentCount());
+    	assertEquals(12, container.getComponentCount());
     }
-    @Test
-    public void emptyContainerContainsZeroComponents() {
-    	MonthsInYearContainer container = new MonthsInYearContainer();
-    	assertFalse(container.contains(MonthInYear.valueOf("JANUARY")));
-    }
+    
+    
     @Test
     public void canApplyCorrectExclusion() {
     	MonthsInYearContainer container = new MonthsInYearContainer();
-    	container.addException(new MonthInYearExclusion("ExclusionName", MonthInYear.valueOf("JANUARY")));
-    	container.addException(new MonthInYearExclusion("ExclusionName2", MonthInYear.valueOf("MARCH")));
+    	container.addExclusion(MonthInYearExclusion.valueOf("ExclusionName", MonthInYear.valueOf("JANUARY")));
+    	container.addExclusion(MonthInYearExclusion.valueOf("ExclusionName2", MonthInYear.valueOf("MARCH")));
     	
     	assertFalse(container.contains(MonthInYear.valueOf("JANUARY")));
     	assertFalse(container.contains(MonthInYear.valueOf("MARCH")));
@@ -55,7 +48,7 @@ public class MonthsInYearContainerTest {
         for (MonthInYear month : MonthInYear.allMonths()) {
             assertTrue(monthsInYearContainerUT.contains(month));
         }
-        monthsInYearContainerUT.addException(new MonthInYearExclusion("Closing", MonthInYear.valueOf("JANUARY")));
+        monthsInYearContainerUT.addExclusion(MonthInYearExclusion.valueOf("Closing", MonthInYear.valueOf("JANUARY")));
         assertFalse(monthsInYearContainerUT.contains(MonthInYear.valueOf("JANUARY")));
     }
 
@@ -65,7 +58,7 @@ public class MonthsInYearContainerTest {
         for (MonthInYear month : MonthInYear.allMonths()) {
             assertTrue(monthsInYearContainerUT.contains(month));
         }
-        monthsInYearContainerUT.addException(new MonthInYearExclusion("Closing", MonthInYear.valueOf("JANUARY")));
+        monthsInYearContainerUT.addExclusion(MonthInYearExclusion.valueOf("Closing", MonthInYear.valueOf("JANUARY")));
         assertFalse(monthsInYearContainerUT.contains(MonthInYear.valueOf("JANUARY")));
         monthsInYearContainerUT.removeExclusion("Closing");
         assertTrue(monthsInYearContainerUT.contains(MonthInYear.valueOf("JANUARY")));
@@ -79,7 +72,7 @@ public class MonthsInYearContainerTest {
             assertTrue(monthsInYearContainerUT.contains(month));
         }
         assertEquals(0, monthsInYearContainerUT.getExclusions().size());
-        monthsInYearContainerUT.addException(new MonthInYearExclusion("Closing", MonthInYear.valueOf("JANUARY")));
+        monthsInYearContainerUT.addExclusion(MonthInYearExclusion.valueOf("Closing", MonthInYear.valueOf("JANUARY")));
         assertEquals(1, monthsInYearContainerUT.getExclusions().size());
 
     }
