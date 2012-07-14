@@ -5,15 +5,26 @@ import java.util.List;
 import eu.jpereira.jsimplecalendar.datetime.DateTimeComponent;
 import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.DateTimeComponentExclusion;
 
+/**
+ * An imutable container of {@link DateTimeComponent} with muttable {@link DateTimeComponentExclusion}
+ * @author jpereira
+ *
+ * @param <E>
+ */
 public interface DateTimeComponentContainer<E extends DateTimeComponentExclusion> {
 
+	/**
+	 * Core Interface
+	 * @param dateTimeComponent
+	 * @return
+	 */
 	boolean contains(DateTimeComponent dateTimeComponent);
 
+	/** Building state interfaces **/
 	int getComponentCount();
+	
 
 	List<E> getExclusions();
-
-	public void addDateTimeComponent(DateTimeComponent dateTimeComponent);
 
 	void addExclusion(E exclusion);
 

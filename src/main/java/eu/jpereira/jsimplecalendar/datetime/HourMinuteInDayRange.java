@@ -1,21 +1,25 @@
 package eu.jpereira.jsimplecalendar.datetime;
 
+public class HourMinuteInDayRange implements DateTimeComponent {
 
-public class HourMinuteInDayRange implements DateTimeComponent{
+	protected HourMinuteInDay startHourMinuteInDay;
+	protected HourMinuteInDay endHourMinuteInDay;
 
-    protected HourMinuteInDay startDayTime;
-    protected HourMinuteInDay endDayTime;
+	protected HourMinuteInDayRange(String startDayTimeExpression, String endDayTimeExpression) {
+		this.startHourMinuteInDay = HourMinuteInDay.valueOf(startDayTimeExpression);
+		this.endHourMinuteInDay = HourMinuteInDay.valueOf(endDayTimeExpression);
 
-    public HourMinuteInDayRange(String startDayTimeExpression, String endDayTimeExpression) {
-        this.startDayTime = HourMinuteInDay.valueOf(startDayTimeExpression);
-        this.endDayTime = HourMinuteInDay.valueOf(endDayTimeExpression);
+	}
 
-    }
+	public boolean includes(HourMinuteInDay dayTime) {
 
-    public boolean includes(HourMinuteInDay dayTime) {
+		return (dayTime.compareTo(startHourMinuteInDay) >= 0 && dayTime.compareTo(endHourMinuteInDay) < 0);
 
-        return (dayTime.compareTo(startDayTime) >= 0 && dayTime.compareTo(endDayTime) < 0);
+	}
 
-    }
-
+	public static HourMinuteInDayRange valueOf(String startHourMinuteExpression, String endHourMinuteExpression) {
+		return new HourMinuteInDayRange(startHourMinuteExpression, endHourMinuteExpression);
+	}
+	
+	
 }

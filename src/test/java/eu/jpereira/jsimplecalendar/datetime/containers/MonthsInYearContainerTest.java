@@ -23,25 +23,24 @@ public class MonthsInYearContainerTest {
 
     @Before
     public void setup() {
-        this.monthsInYearContainerUT = new MonthsInYearContainer();
+        this.monthsInYearContainerUT = MonthsInYearContainer.newContainerWithComponents(MonthInYear.allMonths());
     }
     
     
     @Test
     public void canCreateFullContainer() {
-    	MonthsInYearContainer container = new MonthsInYearContainer();
-    	assertEquals(12, container.getComponentCount());
+    	assertEquals(12, monthsInYearContainerUT.getComponentCount());
     }
     
     
     @Test
     public void canApplyCorrectExclusion() {
-    	MonthsInYearContainer container = new MonthsInYearContainer();
-    	container.addExclusion(MonthInYearExclusion.valueOf("ExclusionName", MonthInYear.valueOf("JANUARY")));
-    	container.addExclusion(MonthInYearExclusion.valueOf("ExclusionName2", MonthInYear.valueOf("MARCH")));
+
+    	monthsInYearContainerUT.addExclusion(MonthInYearExclusion.valueOf("ExclusionName", MonthInYear.valueOf("JANUARY")));
+    	monthsInYearContainerUT.addExclusion(MonthInYearExclusion.valueOf("ExclusionName2", MonthInYear.valueOf("MARCH")));
     	
-    	assertFalse(container.contains(MonthInYear.valueOf("JANUARY")));
-    	assertFalse(container.contains(MonthInYear.valueOf("MARCH")));
+    	assertFalse(monthsInYearContainerUT.contains(MonthInYear.valueOf("JANUARY")));
+    	assertFalse(monthsInYearContainerUT.contains(MonthInYear.valueOf("MARCH")));
     }
     public void canAddExclusions() {
 

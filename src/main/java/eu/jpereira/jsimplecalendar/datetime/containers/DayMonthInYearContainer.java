@@ -11,12 +11,7 @@ import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.DayMonthInYear
 
 public class DayMonthInYearContainer extends MapAndListBackedDateTimeComponentContainer<DayMonthInYearExclusion> {
 
-	public DayMonthInYearContainer(List<DateTimeComponent> initialDateTimeComponents,
-	        Map<String, DateTimeComponentExclusion> initialDateTimeComponentExclusion) {
-		super(initialDateTimeComponents, initialDateTimeComponentExclusion);
-	}
-
-	public DayMonthInYearContainer() {
+	private DayMonthInYearContainer() {
 
 	}
 
@@ -38,6 +33,13 @@ public class DayMonthInYearContainer extends MapAndListBackedDateTimeComponentCo
 	@Override
 	protected List<DateTimeComponent> getNewEmptyDateTimeComponents() {
 		return new ArrayList<DateTimeComponent>();
+	}
+
+	public static DayMonthInYearContainer newContainer() {
+		DayMonthInYearContainer container = new DayMonthInYearContainer();
+		container.dateTimeComponentExclusions = new HashMap<String, DateTimeComponentExclusion>();
+		container.dateTimeComponents = new ArrayList<DateTimeComponent>();
+		return container;
 	}
 
 }

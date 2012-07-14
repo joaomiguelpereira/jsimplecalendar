@@ -1,10 +1,10 @@
 package eu.jpereira.jsimplecalendar.datetime;
 
 
-public class EmptyHourMinuteInDayPeriod extends HourMinuteInDayRange {
+public class EmptyHourMinuteInDayRange extends HourMinuteInDayRange {
 
-	public EmptyHourMinuteInDayPeriod() {
-	    super("0:00", "0:00");
+	public EmptyHourMinuteInDayRange() {
+	    super("0:0", "0:0");
     }
 
 	@Override
@@ -12,6 +12,7 @@ public class EmptyHourMinuteInDayPeriod extends HourMinuteInDayRange {
 	    return false; //Is empty
     }
 	
+
 	
 
 }

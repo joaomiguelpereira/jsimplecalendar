@@ -17,34 +17,34 @@ public class HourMinuteInDayContainerTest {
 
 	@Before
 	public void setupTestWorkingTime() {
-		timeInDayContainerUT = new HourMinuteInDayContainer();
+		timeInDayContainerUT = HourMinuteInDayContainer.newEmptyContainer();
 		
 	}
 
 	@Test
 	public void containsOnePeriod() {
-		timeInDayContainerUT = new HourMinuteInDayContainer();
+		timeInDayContainerUT = HourMinuteInDayContainer.newEmptyContainer();
 		assertEquals(0, timeInDayContainerUT.getComponentCount());
 
 	}
 
 	@Test
 	public void emptyContainerContainsNoComponents() {
-		timeInDayContainerUT = new HourMinuteInDayContainer();
+		timeInDayContainerUT = HourMinuteInDayContainer.newEmptyContainer();
 		assertFalse(timeInDayContainerUT.contains(HourMinuteInDay.valueOf("0:00")));
 		assertFalse(timeInDayContainerUT.contains(HourMinuteInDay.valueOf("18:00")));
 	}
 
 	@Test
 	public void emptyContainerContainsNoExclusiong() {
-		timeInDayContainerUT = new HourMinuteInDayContainer();
+		timeInDayContainerUT = HourMinuteInDayContainer.newEmptyContainer();
 		assertEquals(0,timeInDayContainerUT.getExclusions().size());
 	}
 
 	@Test
 	public void canAddWorkingTimeException() {
-
-		timeInDayContainerUT.addDateTimeComponent(new HourMinuteInDayRange("8:0", "17:0"));
+		timeInDayContainerUT = HourMinuteInDayContainer.newContainerWithComponents(HourMinuteInDayRange.valueOf("8:0", "17:0"));
+		
 		
 		HourMinuteInDayExclusion exception = new HourMinuteInDayExclusion("siesta", "14:30", "15:00");
 		timeInDayContainerUT.addExclusion(exception);
@@ -60,7 +60,8 @@ public class HourMinuteInDayContainerTest {
 	@Test
 	public void canRemoveWorkingTimeExceptions() {
 
-		timeInDayContainerUT.addDateTimeComponent(new HourMinuteInDayRange("8:0", "17:0"));
+		
+		timeInDayContainerUT = HourMinuteInDayContainer.newContainerWithComponents(HourMinuteInDayRange.valueOf("8:0", "17:0"));
 		timeInDayContainerUT.addExclusion(new HourMinuteInDayExclusion("other", "3:00", "15:00"));
 		assertEquals(1, timeInDayContainerUT.getExclusions().size());
 

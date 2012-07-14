@@ -18,7 +18,9 @@ public class WorkingWeekDaysTest {
 	@Before
 	public void setup() {
 
-		this.testWorkignWeekDays = new DayInWeekContainer();
+		
+		this.testWorkignWeekDays = DayInWeekContainer.containerWithComponents(DayInWeek.allDaysInWeek());
+		
 	}
 
 	@Test

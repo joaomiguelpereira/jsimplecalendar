@@ -1,6 +1,7 @@
 package eu.jpereira.jsimplecalendar.datetime.containers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,21 +9,25 @@ import java.util.Map;
 import eu.jpereira.jsimplecalendar.datetime.DateTimeComponent;
 import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.DateTimeComponentExclusion;
 
+/**
+ * An abstract implementation of {@link DateTimeComponent} It contains a
+ * {@link List} of {@link DateTimeComponent} instances. There are exclusions to
+ * the list, a way to tell the container to ignore a given
+ * {@link DateTimeComponent} in it's list. Class
+ * {@link DateTimeComponentExclusion} model one exclusion of the list.
+ * 
+ * @author jpereira
+ * 
+ * @param <E>
+ */
 public abstract class MapAndListBackedDateTimeComponentContainer<E extends DateTimeComponentExclusion> implements DateTimeComponentContainer<E> {
+
 	protected List<DateTimeComponent> dateTimeComponents;
 
 	protected Map<String, DateTimeComponentExclusion> dateTimeComponentExclusions;
 
-	public MapAndListBackedDateTimeComponentContainer() {
-		this.dateTimeComponents = getNewEmptyDateTimeComponents();
-		this.dateTimeComponentExclusions = getNewEmptyDateTimeComponentExclusions();
+	protected MapAndListBackedDateTimeComponentContainer() {
 
-	}
-
-	public MapAndListBackedDateTimeComponentContainer(List<DateTimeComponent> initialDateTimeComponents,
-	        Map<String, DateTimeComponentExclusion> initialDateTimeComponentExclusion) {
-		this.dateTimeComponents = initialDateTimeComponents;
-		this.dateTimeComponentExclusions = initialDateTimeComponentExclusion;
 	}
 
 	protected Map<String, DateTimeComponentExclusion> getNewEmptyDateTimeComponentExclusions() {
@@ -48,11 +53,6 @@ public abstract class MapAndListBackedDateTimeComponentContainer<E extends DateT
 	}
 
 	@Override
-	public void addDateTimeComponent(DateTimeComponent dateTimeComponent) {
-		this.dateTimeComponents.add(dateTimeComponent);
-	}
-
-	@Override
 	public boolean isExcluded(DateTimeComponent dateTimeComponent) {
 
 		for (DateTimeComponentExclusion actualExclusion : this.dateTimeComponentExclusions.values()) {
@@ -64,7 +64,7 @@ public abstract class MapAndListBackedDateTimeComponentContainer<E extends DateT
 
 	}
 
-	// TODO: Think about this
+	// TODO: Think about this...
 	public List<E> getExclusions() {
 		List<DateTimeComponentExclusion> exclusions = new ArrayList<DateTimeComponentExclusion>();
 		exclusions.addAll(this.dateTimeComponentExclusions.values());

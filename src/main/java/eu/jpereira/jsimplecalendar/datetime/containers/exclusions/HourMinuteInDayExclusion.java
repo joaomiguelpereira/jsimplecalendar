@@ -10,7 +10,7 @@ public class HourMinuteInDayExclusion implements DateTimeComponentExclusion {
 	private HourMinuteInDayRange excludedHourMinuteInDayRange;
 
 	public HourMinuteInDayExclusion(String name, String startDayTimeExpression, String endDayTimeExpression) {
-		this.excludedHourMinuteInDayRange = new HourMinuteInDayRange(startDayTimeExpression, endDayTimeExpression);
+		this.excludedHourMinuteInDayRange = HourMinuteInDayRange.valueOf(startDayTimeExpression, endDayTimeExpression);
 		this.name = name;
 
 	}
@@ -27,8 +27,8 @@ public class HourMinuteInDayExclusion implements DateTimeComponentExclusion {
 
 	@Override
 	public boolean isExcluded(DateTimeComponent dateTimeComponent) {
-		//TODO: Review
-		return this.excludedHourMinuteInDayRange.includes((HourMinuteInDay)dateTimeComponent);
+		// TODO: Review
+		return this.excludedHourMinuteInDayRange.includes((HourMinuteInDay) dateTimeComponent);
 	}
 
 }

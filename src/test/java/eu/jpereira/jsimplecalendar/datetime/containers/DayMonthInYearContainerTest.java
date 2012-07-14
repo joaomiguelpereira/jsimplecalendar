@@ -12,7 +12,7 @@ import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.DayMonthInYear
 //TODO: Complete
 public class DayMonthInYearContainerTest {
 
-	private DayMonthInYearContainer containerUT = new DayMonthInYearContainer();
+	private DayMonthInYearContainer containerUT = DayMonthInYearContainer.newContainer();
 
 	/** Component inclusions */
 
