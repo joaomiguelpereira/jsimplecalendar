@@ -4,15 +4,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>eu.jpereira.jsimplecalendar</groupId>
-	<artifactId>core-engine</artifactId>
+	<artifactId>jsimplecalendar</artifactId>
 	<version>1.0.0.CI-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>core-engine</name>
+	<name>jsimplecalendar</name>
 	<url>http://jpereira.eu</url>
 	<description>
-		<![CDATA[
-      The Core engine for jsimplecalendar
-    ]]>
+		JSimple Calendar
 	</description>
 	<properties>
 
@@ -76,11 +74,33 @@
 						<id>instrument</id>
 						<phase>site</phase>
 						<goals>
-							<goal>instrument</goal>
 							<goal>cobertura</goal>
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+				<version>0.27</version>
+				<configuration>
+					<targetClasses>
+						<param>eu.jpereira.jsimplecalendar.**</param>
+					</targetClasses>
+					<targetTests>
+						<param>eu.jpereira.jsimplecalendar.**</param>
+					</targetTests>
+
+					<executions>
+						<execution>
+							<id>instrument</id>
+							<phase>site</phase>
+							<goals>
+								<goal>mutationCoverage</goal>
+							</goals>
+						</execution>
+					</executions>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

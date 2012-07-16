@@ -1,70 +1,12 @@
 package eu.jpereira.jsimplecalendar.datetime;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import eu.jpereira.appointments.model.calendar.exceptions.InvalidDayOfMonthExpressionException;
-import eu.jpereira.jsimplecalendar.datetime.DayMonthInYear;
-
-public class DayInMonthTest {
-
-	@Test
-	public void canGetValueOfValidDayOfMonth() {
-		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("12/01");
-		assertEquals(12, dayOfMonth.getDay());
-		assertEquals(1, dayOfMonth.getMonth());
-	}
-
-	@Test
-	public void canGetAllValues() {
-		for (int m = 1; m <= 12; m++) {
-			for (int d = 1; d <= 31; d++) {
-				String expression = d + "/" + m;
-				@SuppressWarnings("unused")
-				DayMonthInYear dayOfMonth = DayMonthInYear.valueOf(expression);
-				String expressionPadded = (d < 10 ? "0" + d : d) + "/" + (m < 10 ? "0" + m : m);
-				dayOfMonth = DayMonthInYear.valueOf(expressionPadded);
-
-			}
-		}
-	}
-
-	@Test(expected = InvalidDayOfMonthExpressionException.class)
-	public void throwExceptionIncosistentValuesLowerDayBoundary() {
-		@SuppressWarnings("unused")
-		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("0/1");
-	}
-
-	@Test(expected = InvalidDayOfMonthExpressionException.class)
-	public void throwExceptionIncosistentValuesUpperDayBoundary() {
-		@SuppressWarnings("unused")
-		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("32/1");
-	}
-
-	@Test(expected = InvalidDayOfMonthExpressionException.class)
-	public void throwExceptionIncosistentValuesLowerMonthBoundary() {
-		@SuppressWarnings("unused")
-		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("1/0");
-	}
-
-	@Test(expected = InvalidDayOfMonthExpressionException.class)
-	public void throwExceptionIncosistentValuesUpperMonthBoundary() {
-		@SuppressWarnings("unused")
-		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("1/13");
-	}
-
-	@Test(expected = InvalidDayOfMonthExpressionException.class)
-	public void throwExceptionInvalidValues() {
-		@SuppressWarnings("unused")
-		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("12-b");
-	}
-
-	@Test(expected = InvalidDayOfMonthExpressionException.class)
-	public void throwExceptionInvalidIntegerValues() {
-		@SuppressWarnings("unused")
-		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("12/b");
-	}
+public class DayInMonthShouldBeComparableTest {
 
 	@Test
 	public void testEqualsReflexive() {
