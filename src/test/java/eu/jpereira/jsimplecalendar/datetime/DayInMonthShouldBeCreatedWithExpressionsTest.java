@@ -42,25 +42,31 @@ public class DayInMonthShouldBeCreatedWithExpressionsTest {
 	}
 
 	@Test(expected = InvalidDayOfMonthExpressionException.class)
-	public void shoulThrowExceptionWhenMonthIsZero() {
+	public void shoulThrowExceptionWhenMonthIsLessThanOne() {
 		@SuppressWarnings("unused")
 		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("1/0");
 	}
 
 	@Test(expected = InvalidDayOfMonthExpressionException.class)
-	public void throwExceptionIncosistentValuesUpperMonthBoundary() {
+	public void shouldThrowExceptionWhenMonthIsGreaterThan12() {
 		@SuppressWarnings("unused")
 		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("1/13");
 	}
 
 	@Test(expected = InvalidDayOfMonthExpressionException.class)
-	public void throwExceptionInvalidValues() {
+	public void shouldThrowExceptionIfExpressionIsMalformed() {
 		@SuppressWarnings("unused")
 		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("12-b");
 	}
 
 	@Test(expected = InvalidDayOfMonthExpressionException.class)
-	public void throwExceptionInvalidIntegerValues() {
+	public void shouldThrowExceptionIfMonthValueIsNotAnInteger() {
+		@SuppressWarnings("unused")
+		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("12/b");
+	}
+
+	@Test(expected = InvalidDayOfMonthExpressionException.class)
+	public void shouldThrowExceptionIfDayValueIsNotAnInteger() {
 		@SuppressWarnings("unused")
 		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("12/b");
 	}
