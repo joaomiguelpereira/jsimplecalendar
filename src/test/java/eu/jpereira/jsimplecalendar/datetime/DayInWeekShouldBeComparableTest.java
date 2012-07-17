@@ -1,29 +1,13 @@
 package eu.jpereira.jsimplecalendar.datetime;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
-
-import eu.jpereira.jsimplecalendar.datetime.DayInWeek;
-import eu.jpereira.jsimplecalendar.datetime.exceptions.IllegalDateTimeComponentValueException;
-
-public class DayInWeekTest {
-
-	private static final String[] allowedValues = { "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY" };
+public class DayInWeekShouldBeComparableTest {
 
 	@Test
-	public void testValueOf() {
-
-		for (String allowedValue : allowedValues) {
-			DayInWeek.valueOf(allowedValue);
-		}
-	}
-	@Test(expected=IllegalDateTimeComponentValueException.class)
-	public void testInvalidValue() throws Throwable {
-		DayInWeek.valueOf("Invalid");
-	}
-
-	@Test
-	public void testEqualsSimetric() {
+	public void shouldRespectSimetricPropertyOfEquality() {
 		DayInWeek d1 = DayInWeek.valueOf("SUNDAY");
 		DayInWeek d2 = DayInWeek.valueOf("SUNDAY");
 		assertTrue(d1.equals(d2));
@@ -32,13 +16,13 @@ public class DayInWeekTest {
 	}
 
 	@Test
-	public void testEqualsReflexive() {
+	public void shouldRespectReflexivePropertyOfEquality() {
 		DayInWeek d1 = DayInWeek.valueOf("SUNDAY");
 		assertTrue(d1.equals(d1));
 	}
 
 	@Test
-	public void testEqualsTransitive() {
+	public void shouldRespectTransitivityPropertyOfEquality() {
 
 		DayInWeek d1 = DayInWeek.valueOf("SUNDAY");
 		DayInWeek d2 = DayInWeek.valueOf("SUNDAY");
@@ -48,25 +32,25 @@ public class DayInWeekTest {
 	}
 
 	@Test
-	public void testEqualsWithNull() {
+	public void shouldNeveBeEqualToNull() {
 		DayInWeek d1 = DayInWeek.valueOf("SUNDAY");
 		assertFalse(d1.equals(null));
 	}
 
 	@Test
-	public void testEqualsDifferent() {
+	public void shoulReturnFalseWithDifferentValues() {
 		DayInWeek d1 = DayInWeek.valueOf("SUNDAY");
 		assertFalse(d1.equals(DayInWeek.valueOf("MONDAY")));
 	}
 
 	@Test
-	public void testEqualsDifferentTypes() {
+	public void shoulReturnFalseWithDifferentTypes() {
 		DayInWeek d1 = DayInWeek.valueOf("SUNDAY");
 		assertFalse(d1.equals(new Object()));
 	}
 
 	@Test
-	public void testHashCode() {
+	public void shouldReturnSameHashCodeAsEqualValue() {
 		DayInWeek d1 = DayInWeek.valueOf("SUNDAY");
 		DayInWeek d2 = DayInWeek.valueOf("SUNDAY");
 
@@ -75,7 +59,7 @@ public class DayInWeekTest {
 	}
 
 	@Test
-	public void testHashCodeDifferent() {
+	public void shouldReturnDifferentHashcodeThanDifferentValue() {
 		DayInWeek d1 = DayInWeek.valueOf("SUNDAY");
 		DayInWeek d2 = DayInWeek.valueOf("WEDNESDAY");
 
