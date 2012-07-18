@@ -3,6 +3,7 @@ package eu.jpereira.jsimplecalendar.datetime;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import junit.framework.Assert;
 
 import org.junit.Test;
 
@@ -11,12 +12,13 @@ import eu.jpereira.jsimplecalendar.testing.ObjectShouldBeComparableTest;
 @SuppressWarnings("rawtypes")
 public class DayMonthInYearShouldBeComparableTest implements ObjectShouldBeComparableTest {
 
-	
-    private Comparable valueUnderTest = DayMonthInYear.valueOf("12/12");
+	// Fixtures used in the tests
+	private Comparable valueUnderTest = DayMonthInYear.valueOf("12/12");
 	private Comparable valueExpectedToBeEqualAsValueUnderTest = DayMonthInYear.valueOf("12/12");
-	private Comparable anotherValueExpectedToBeEqualToValueUnderTest;
-	private Comparable valueExpectedToBeDifferentFromValueUnderTest;
-	private Comparable anotherValueExpectedToBeDifferentFromValueUnderTest;
+	private Comparable anotherValueExpectedToBeEqualToValueUnderTest = DayMonthInYear.valueOf("12/12");
+
+	private Comparable valueExpectedToBeDifferentFromValueUnderTest = DayMonthInYear.valueOf("01/01");
+	private Comparable anotherValueExpectedToBeDifferentFromValueUnderTest = DayMonthInYear.valueOf("02/01");;
 
 	private Comparable valueExpectedToBeBiggerThanExpected = DayMonthInYear.valueOf("15/12");
 	private Comparable valueExpectedToBeSmallerThanExpected = DayMonthInYear.valueOf("11/12");;
@@ -38,23 +40,32 @@ public class DayMonthInYearShouldBeComparableTest implements ObjectShouldBeCompa
 	}
 
 	@Override
+	@Test
 	public void shouldHaveTheTransitivePropertyOfEquality() {
-		// TODO Auto-generated method stub
+		// if a=b and b=c, then a=c
+		assertTrue(valueUnderTest.equals(valueExpectedToBeEqualAsValueUnderTest));
+		assertTrue(valueExpectedToBeEqualAsValueUnderTest.equals(anotherValueExpectedToBeEqualToValueUnderTest));
+		assertTrue(valueUnderTest.equals(anotherValueExpectedToBeEqualToValueUnderTest));
 
 	}
 
 	@Override
+	@Test
 	public void shouldFollowConsitentyContractOfEquality() {
-		// TODO Auto-generated method stub
+		// For any a.equals(b), any number of sonsecutive calls will produce the
+		// same result as last invocation, assuming no state in the object was
+		// changed
+		// This may be a nice to have verification
+		for (int i = 0; i < 10; i++) {
+			assertTrue(valueUnderTest.equals(valueExpectedToBeEqualAsValueUnderTest));
+		}
 
 	}
 
 	@Override
 	@Test
 	public void shouldFollwoNonNullWithNulRespondeFalseContractOfEquality() {
-
 		assertFalse(valueUnderTest.equals(null));
-
 	}
 
 	@Override
@@ -64,54 +75,68 @@ public class DayMonthInYearShouldBeComparableTest implements ObjectShouldBeCompa
 	}
 
 	@Override
+	@Test
 	public void shouldRespondFalseForDifferentValues() {
 		assertFalse(valueUnderTest.equals(valueExpectedToBeDifferentFromValueUnderTest));
 	}
 
 	@Override
+	@Test
 	public void shouldHaveTheTransitivePropertyOfInequality() {
-		// TODO Auto-generated method stub
-
+		// if a!=b, and b!=c, then a!=c
+		assertFalse(valueUnderTest.equals(valueExpectedToBeDifferentFromValueUnderTest));
+		assertFalse(valueExpectedToBeDifferentFromValueUnderTest
+		        .equals(anotherValueExpectedToBeDifferentFromValueUnderTest));
+		assertFalse(valueUnderTest.equals(anotherValueExpectedToBeDifferentFromValueUnderTest));
 	}
 
 	@Override
+	@Test
 	public void shouldRespondWithSameHashCodeIfObjectsAreEquals() {
 		assertEquals(valueUnderTest.hashCode(), valueExpectedToBeEqualAsValueUnderTest.hashCode());
 
 	}
 
 	@Override
+	@Test
 	public void shouldRespondDifferentHashCodesIfObjectAreNotEquals() {
 		assertFalse(valueUnderTest.hashCode() == valueExpectedToBeDifferentFromValueUnderTest.hashCode());
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Test
 	public void shoulRespondGreaterThanZeroWhenComparingWithSmallerValue() {
 
 		assertTrue(valueUnderTest.compareTo(valueExpectedToBeBiggerThanExpected) > 0);
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Test
 	public void shouldRespondSmallerThanZeroWhenComparingWithGreaterValue() {
 		assertTrue(valueUnderTest.compareTo(valueExpectedToBeSmallerThanExpected) < 0);
 	}
 
 	@Override
+	@Test
 	public void shouldRespondZeroIfComparingWithEqualValue() {
-		// TODO Auto-generated method stub
+		Assert.fail("Not implemented");
 
 	}
 
 	@Override
+	@Test
 	public void shouldHaveFirstTransitivePropertyOfInequality() {
-		// TODO Auto-generated method stub
+		Assert.fail("Not implemented");
 
 	}
 
 	@Override
+	@Test
 	public void shouldHaveSecondTransitivePropertyOfInequality() {
-		// TODO Auto-generated method stub
+		Assert.fail("Not implemented");
 
 	}
 
