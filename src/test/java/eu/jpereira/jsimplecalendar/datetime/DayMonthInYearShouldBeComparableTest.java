@@ -1,142 +1,32 @@
 package eu.jpereira.jsimplecalendar.datetime;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import junit.framework.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
-import org.junit.Test;
+import eu.jpereira.jsimplecalendar.testing.AbstractComparableTest;
 
-import eu.jpereira.jsimplecalendar.testing.ObjectShouldBeComparableTest;
+import static org.testng.Assert.*;
 
-@SuppressWarnings("rawtypes")
-public class DayMonthInYearShouldBeComparableTest implements ObjectShouldBeComparableTest {
-
-	// Fixtures used in the tests
-	private Comparable valueUnderTest = DayMonthInYear.valueOf("12/12");
-	private Comparable valueExpectedToBeEqualAsValueUnderTest = DayMonthInYear.valueOf("12/12");
-	private Comparable anotherValueExpectedToBeEqualToValueUnderTest = DayMonthInYear.valueOf("12/12");
-
-	private Comparable valueExpectedToBeDifferentFromValueUnderTest = DayMonthInYear.valueOf("01/01");
-	private Comparable anotherValueExpectedToBeDifferentFromValueUnderTest = DayMonthInYear.valueOf("02/01");;
-
-	private Comparable valueExpectedToBeBiggerThanExpected = DayMonthInYear.valueOf("15/12");
-	private Comparable valueExpectedToBeSmallerThanExpected = DayMonthInYear.valueOf("11/12");;
+public class DayMonthInYearShouldBeComparableTest extends AbstractComparableTest {
 
 	@Override
-	@Test
-	public void shouldHaveTheReflexivePropertyOfEquality() {
+	@BeforeTest
+	public void fixValues() {
 
-		Object sameReferenceAsValueUnderTest = valueUnderTest;
-		assertTrue(valueUnderTest.equals(sameReferenceAsValueUnderTest));
+		// Fixtures used in the tests
+		value_under_test = DayMonthInYear.valueOf("12/12");
 
-	}
+		value_expected_to_be_equals_to_value_under_test = DayMonthInYear.valueOf("12/12");
+		another_value_expected_to_be_equal_to_value_under_test = DayMonthInYear.valueOf("12/12");
 
-	@Override
-	@Test
-	public void shouldHaveTheSymetricPropertyOfEquality() {
-		assertTrue(valueUnderTest.equals(valueExpectedToBeEqualAsValueUnderTest));
-		assertTrue(valueExpectedToBeEqualAsValueUnderTest.equals(valueUnderTest));
-	}
+		value_expected_to_be_different_from_value_under_test = DayMonthInYear.valueOf("01/01");
+		another_value_expected_to_be_different_from_value_under_test = DayMonthInYear.valueOf("02/01");
 
-	@Override
-	@Test
-	public void shouldHaveTheTransitivePropertyOfEquality() {
-		// if a=b and b=c, then a=c
-		assertTrue(valueUnderTest.equals(valueExpectedToBeEqualAsValueUnderTest));
-		assertTrue(valueExpectedToBeEqualAsValueUnderTest.equals(anotherValueExpectedToBeEqualToValueUnderTest));
-		assertTrue(valueUnderTest.equals(anotherValueExpectedToBeEqualToValueUnderTest));
+		value_expected_to_be_bigger = DayMonthInYear.valueOf("15/12");
+		value_expected_to_be_even_bigger = DayMonthInYear.valueOf("16/12");
 
-	}
-
-	@Override
-	@Test
-	public void shouldFollowConsitentyContractOfEquality() {
-		// For any a.equals(b), any number of sonsecutive calls will produce the
-		// same result as last invocation, assuming no state in the object was
-		// changed
-		// This may be a nice to have verification
-		for (int i = 0; i < 10; i++) {
-			assertTrue(valueUnderTest.equals(valueExpectedToBeEqualAsValueUnderTest));
-		}
-
-	}
-
-	@Override
-	@Test
-	public void shouldFollwoNonNullWithNulRespondeFalseContractOfEquality() {
-		assertFalse(valueUnderTest.equals(null));
-	}
-
-	@Override
-	@Test
-	public void shouldRespondFalseForDifferentTypes() {
-		assertFalse(valueUnderTest.equals(new Object()));
-	}
-
-	@Override
-	@Test
-	public void shouldRespondFalseForDifferentValues() {
-		assertFalse(valueUnderTest.equals(valueExpectedToBeDifferentFromValueUnderTest));
-	}
-
-	@Override
-	@Test
-	public void shouldHaveTheTransitivePropertyOfInequality() {
-		// if a!=b, and b!=c, then a!=c
-		assertFalse(valueUnderTest.equals(valueExpectedToBeDifferentFromValueUnderTest));
-		assertFalse(valueExpectedToBeDifferentFromValueUnderTest
-		        .equals(anotherValueExpectedToBeDifferentFromValueUnderTest));
-		assertFalse(valueUnderTest.equals(anotherValueExpectedToBeDifferentFromValueUnderTest));
-	}
-
-	@Override
-	@Test
-	public void shouldRespondWithSameHashCodeIfObjectsAreEquals() {
-		assertEquals(valueUnderTest.hashCode(), valueExpectedToBeEqualAsValueUnderTest.hashCode());
-
-	}
-
-	@Override
-	@Test
-	public void shouldRespondDifferentHashCodesIfObjectAreNotEquals() {
-		assertFalse(valueUnderTest.hashCode() == valueExpectedToBeDifferentFromValueUnderTest.hashCode());
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	@Test
-	public void shoulRespondGreaterThanZeroWhenComparingWithSmallerValue() {
-
-		assertTrue(valueUnderTest.compareTo(valueExpectedToBeBiggerThanExpected) > 0);
-
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	@Test
-	public void shouldRespondSmallerThanZeroWhenComparingWithGreaterValue() {
-		assertTrue(valueUnderTest.compareTo(valueExpectedToBeSmallerThanExpected) < 0);
-	}
-
-	@Override
-	@Test
-	public void shouldRespondZeroIfComparingWithEqualValue() {
-		Assert.fail("Not implemented");
-
-	}
-
-	@Override
-	@Test
-	public void shouldHaveFirstTransitivePropertyOfInequality() {
-		Assert.fail("Not implemented");
-
-	}
-
-	@Override
-	@Test
-	public void shouldHaveSecondTransitivePropertyOfInequality() {
-		Assert.fail("Not implemented");
+		value_expected_to_be_smaller_than_expected = DayMonthInYear.valueOf("11/12");
+		value_expected_to_be_even_smaller_than_expected = DayMonthInYear.valueOf("10/12");
 
 	}
 

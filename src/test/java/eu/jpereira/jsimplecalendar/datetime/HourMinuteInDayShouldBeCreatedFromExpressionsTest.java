@@ -1,10 +1,10 @@
 package eu.jpereira.jsimplecalendar.datetime;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import eu.jpereira.jsimplecalendar.datetime.exceptions.IllegalDateTimeComponentValueException;
+
+import static org.testng.Assert.*;
 
 public class HourMinuteInDayShouldBeCreatedFromExpressionsTest {
 
@@ -18,23 +18,23 @@ public class HourMinuteInDayShouldBeCreatedFromExpressionsTest {
 		testAllDayHoursWithPrefixes();
 	}
 
-	@Test(expected = IllegalDateTimeComponentValueException.class)
+	@Test(expectedExceptions = IllegalDateTimeComponentValueException.class)
 	public void shouldThrowExceptionIfMinutesAreNotGivenInExpression() {
 		HourMinuteInDay.valueOf("1:");
 	}
 
-	@Test(expected = IllegalDateTimeComponentValueException.class)
+	@Test(expectedExceptions = IllegalDateTimeComponentValueException.class)
 	public void shouldThrowExceptionIfHourIsNotGivenInExpression() {
 		HourMinuteInDay.valueOf(":30");
 	}
 
-	@Test(expected = IllegalDateTimeComponentValueException.class)
+	@Test(expectedExceptions = IllegalDateTimeComponentValueException.class)
 	public void shouldCreateHouMinuteInDayFromExpressionInUpperBoundary() {
 		HourMinuteInDay.valueOf("24:00");
 
 	}
 
-	@Test(expected = IllegalDateTimeComponentValueException.class)
+	@Test(expectedExceptions = IllegalDateTimeComponentValueException.class)
 	public void shouldThrowExceptionIfExpressionRepresentsOutOfRangeValue() {
 		HourMinuteInDay.valueOf("-1:00");
 

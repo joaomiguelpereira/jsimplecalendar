@@ -1,10 +1,13 @@
 package eu.jpereira.jsimplecalendar.datetime;
 
-import org.junit.Test;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
-import static org.junit.Assert.*;
+import org.testng.annotations.Test;
 
 import eu.jpereira.jsimplecalendar.datetime.exceptions.IllegalDateTimeComponentValueException;
+
+
 
 public class MonthInYearTest {
 
@@ -16,7 +19,7 @@ public class MonthInYearTest {
 		}
 	}
 	
-	@Test(expected=IllegalDateTimeComponentValueException.class)
+	@Test(expectedExceptions=IllegalDateTimeComponentValueException.class)
 	public void testInvaldiValues() throws Throwable{
 		MonthInYear.valueOf("invalid");
 		

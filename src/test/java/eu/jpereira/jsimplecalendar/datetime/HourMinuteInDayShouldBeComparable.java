@@ -1,95 +1,29 @@
 package eu.jpereira.jsimplecalendar.datetime;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.testng.annotations.BeforeTest;
 
-import org.junit.Test;
+import eu.jpereira.jsimplecalendar.testing.AbstractComparableTest;
 
-import eu.jpereira.jsimplecalendar.testing.ObjectShouldBeComparableTest;
+public class HourMinuteInDayShouldBeComparable extends AbstractComparableTest {
 
-public class HourMinuteInDayShouldBeComparable implements ObjectShouldBeComparableTest{
+	@Override
+	@BeforeTest
+	public void fixValues() {
+		// Fixtures used in the tests
+		value_under_test = HourMinuteInDay.valueOf("09:57");
 
-	@Test
-	public void testEquals() {
-		HourMinuteInDay d1 = HourMinuteInDay.valueOf("9:00");
-		HourMinuteInDay d2 = HourMinuteInDay.valueOf("09:00");
-		assertTrue(d1.equals(d2));
-		assertTrue(d2.equals(d1));
+		value_expected_to_be_equals_to_value_under_test = DayMonthInYear.valueOf("12/12");	
+		another_value_expected_to_be_equal_to_value_under_test = DayMonthInYear.valueOf("12/12");
 
-		assertFalse(d2.equals(HourMinuteInDay.valueOf("09:01")));
-		assertFalse(d2.equals(null));
+		value_expected_to_be_different_from_value_under_test = DayMonthInYear.valueOf("01/01");
+		another_value_expected_to_be_different_from_value_under_test = DayMonthInYear.valueOf("02/01");
+
+		value_expected_to_be_bigger = DayMonthInYear.valueOf("15/12");
+		value_expected_to_be_even_bigger= DayMonthInYear.valueOf("16/12");
+
+		value_expected_to_be_smaller_than_expected = DayMonthInYear.valueOf("11/12");
+		value_expected_to_be_even_smaller_than_expected = DayMonthInYear.valueOf("10/12");
 
 	}
-
-	@Test
-	public void testGreater() {
-		HourMinuteInDay d1 = HourMinuteInDay.valueOf("9:00");
-		HourMinuteInDay d2 = HourMinuteInDay.valueOf("9:01");
-
-		assertTrue(d1.compareTo(d2) < 0);
-		assertTrue(d2.compareTo(d1) > 0);
-
-		assertEquals(d1.compareTo(d2), d2.compareTo(d1) * -1);
-
-		assertTrue(d1.compareTo(HourMinuteInDay.valueOf("09:00")) == 0);
-
-	}
-
-	@Override
-    public void shouldHaveTheReflexivePropertyOfEquality() {
-	    HourMinuteInDay hourMinuteInDayUT = HourMinuteInDay.valueOf("12:17");
-	    HourMinuteInDay otherHourMinuteInDayUT = hourMinuteInDayUT;
-	    assertTrue(hourMinuteInDayUT.equals(otherHourMinuteInDayUT));
-	    
-    }
-
-	@Override
-    public void shouldHaveTheSymetricPropertyOfEquality() {
-	    // TODO Auto-generated method stub
-	    
-    }
-
-	@Override
-    public void shouldRespondFalseIfComparingNull() {
-	    // TODO Auto-generated method stub
-	    
-    }
-
-	@Override
-    public void shouldRespondFalseIfComparingTwoDifferentTypes() {
-	    // TODO Auto-generated method stub
-	    
-    }
-
-	@Override
-    public void shouldRespondFalseIfComparingDifferentValues() {
-	    // TODO Auto-generated method stub
-	    
-    }
-
-	@Override
-    public void shoulRespondGreaterThanZeroWhenComparingWithLowerValue() {
-	    // TODO Auto-generated method stub
-	    
-    }
-
-	@Override
-    public void shouldRespondLessThanZeroWhenComparingWithHigerValue() {
-	    // TODO Auto-generated method stub
-	    
-    }
-
-	@Override
-    public void shouldRespondWithSameHashCodeIfObjectIsEqual() {
-	    // TODO Auto-generated method stub
-	    
-    }
-
-	@Override
-    public void shouldRespondDifferentHashCodesIfObjectAreDifferent() {
-	    // TODO Auto-generated method stub
-	    
-    }
 
 }

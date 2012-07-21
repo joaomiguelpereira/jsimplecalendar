@@ -3,12 +3,12 @@ package eu.jpereira.appointments.model.strategies;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.junit.Test;
-
 import eu.jpereira.appointments.model.AppointmentDate;
 import eu.jpereira.appointments.model.data.AppointmentSpecification;
-import eu.jpereira.testfw.DateUtils;
-import static org.junit.Assert.*;
+import eu.jpereira.regex.DateUtils;
+
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
 public class DefaultAppointmentClockStrategyTest {
 

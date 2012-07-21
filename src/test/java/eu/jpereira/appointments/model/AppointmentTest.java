@@ -1,13 +1,12 @@
 package eu.jpereira.appointments.model;
 
-import static org.junit.Assert.*;
-
 import java.util.Calendar;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
 import eu.jpereira.appointments.model.data.AppointmentSpecification;
-import eu.jpereira.testfw.DateUtils;
+import eu.jpereira.regex.DateUtils;
 
 
 public class AppointmentTest {

@@ -1,6 +1,6 @@
 package eu.jpereira.jsimplecalendar.datetime;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import eu.jpereira.jsimplecalendar.datetime.exceptions.IllegalDateTimeComponentValueException;
 
@@ -15,7 +15,7 @@ public class DayInWeekShouldBeCreatedWithStringConstantsTest {
 			DayInWeek.valueOf(allowedValue);
 		}
 	}
-	@Test(expected=IllegalDateTimeComponentValueException.class)
+	@Test(expectedExceptions=IllegalDateTimeComponentValueException.class)
 	public void shouldThrowExceptionWithProvidedInvalidExpression() throws Throwable {
 		DayInWeek.valueOf("Invalid");
 	}

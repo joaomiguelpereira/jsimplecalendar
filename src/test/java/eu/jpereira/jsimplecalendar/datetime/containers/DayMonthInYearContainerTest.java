@@ -1,14 +1,11 @@
 package eu.jpereira.jsimplecalendar.datetime.containers;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import eu.jpereira.jsimplecalendar.datetime.DayMonthInYear;
 import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.DayMonthInYearExclusion;
 
+import static org.testng.Assert.*;
 //TODO: Complete
 public class DayMonthInYearContainerTest {
 

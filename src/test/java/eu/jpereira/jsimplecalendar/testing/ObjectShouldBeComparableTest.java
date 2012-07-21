@@ -11,7 +11,7 @@ public interface ObjectShouldBeComparableTest extends ObjectShouldOverrideEquals
 	/**
 	 * If a < b then a.compareTo(b) < 0
 	 */
-	public void shouldRespondSmallerThanZeroWhenComparingWithGreaterValue();
+	public void shouldRespondSmallerThanZeroWhenComparingWithBiggerValue();
 
 	/*
 	 * If a.equals(b) then a.compare(b) == 0
@@ -21,7 +21,7 @@ public interface ObjectShouldBeComparableTest extends ObjectShouldOverrideEquals
 	/**
 	 * If a < b and b < c , then a.compare(c) < 0. 
 	 */
-	public void shouldHaveFirstTransitivePropertyOfInequality();
+	public void should_have_first_transitive_property_of_inequality();
 	
 
 	/**

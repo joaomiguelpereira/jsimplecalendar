@@ -1,8 +1,6 @@
 package eu.jpereira.jsimplecalendar.datetime;
-
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
 import eu.jpereira.appointments.model.calendar.exceptions.InvalidDayOfMonthExpressionException;
 
@@ -29,43 +27,44 @@ public class DayInMonthShouldBeCreatedWithExpressionsTest {
 		}
 	}
 
-	@Test(expected = InvalidDayOfMonthExpressionException.class)
+	
+	@Test(expectedExceptions = InvalidDayOfMonthExpressionException.class)
 	public void shouldThrowExceptionWhenDayIsZeroInExpression() {
 		@SuppressWarnings("unused")
 		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("0/1");
 	}
 
-	@Test(expected = InvalidDayOfMonthExpressionException.class)
+	@Test(expectedExceptions = InvalidDayOfMonthExpressionException.class)
 	public void shouldThrowExceptionIfDayIsGreaterThanAnyPossibleDay() {
 		@SuppressWarnings("unused")
 		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("32/1");
 	}
 
-	@Test(expected = InvalidDayOfMonthExpressionException.class)
+	@Test(expectedExceptions = InvalidDayOfMonthExpressionException.class)
 	public void shoulThrowExceptionWhenMonthIsLessThanOne() {
 		@SuppressWarnings("unused")
 		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("1/0");
 	}
 
-	@Test(expected = InvalidDayOfMonthExpressionException.class)
+	@Test(expectedExceptions = InvalidDayOfMonthExpressionException.class)
 	public void shouldThrowExceptionWhenMonthIsGreaterThan12() {
 		@SuppressWarnings("unused")
 		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("1/13");
 	}
 
-	@Test(expected = InvalidDayOfMonthExpressionException.class)
+	@Test(expectedExceptions = InvalidDayOfMonthExpressionException.class)
 	public void shouldThrowExceptionIfExpressionIsMalformed() {
 		@SuppressWarnings("unused")
 		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("12-b");
 	}
 
-	@Test(expected = InvalidDayOfMonthExpressionException.class)
+	@Test(expectedExceptions = InvalidDayOfMonthExpressionException.class)
 	public void shouldThrowExceptionIfMonthValueIsNotAnInteger() {
 		@SuppressWarnings("unused")
 		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("12/b");
 	}
 
-	@Test(expected = InvalidDayOfMonthExpressionException.class)
+	@Test(expectedExceptions = InvalidDayOfMonthExpressionException.class)
 	public void shouldThrowExceptionIfDayValueIsNotAnInteger() {
 		@SuppressWarnings("unused")
 		DayMonthInYear dayOfMonth = DayMonthInYear.valueOf("12/b");

@@ -1,4 +1,4 @@
-package eu.jpereira.testfw;
+package eu.jpereira.regex;
 
 import java.util.Date;
 

@@ -1,24 +1,21 @@
 package eu.jpereira.jsimplecalendar.datetime.containers;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import eu.jpereira.jsimplecalendar.datetime.HourMinuteInDayRange;
 import eu.jpereira.jsimplecalendar.datetime.HourMinuteInDay;
+import eu.jpereira.jsimplecalendar.datetime.HourMinuteInDayRange;
 import eu.jpereira.jsimplecalendar.datetime.containers.exclusions.HourMinuteInDayExclusion;
+import static org.testng.Assert.*;
 
 public class HourMinuteInDayContainerTest {
 
 	private HourMinuteInDayContainer timeInDayContainerUT;
 
-	@Before
+	@BeforeTest
 	public void setupTestWorkingTime() {
 		timeInDayContainerUT = HourMinuteInDayContainer.newEmptyContainer();
-		
+
 	}
 
 	@Test
@@ -38,14 +35,14 @@ public class HourMinuteInDayContainerTest {
 	@Test
 	public void emptyContainerContainsNoExclusiong() {
 		timeInDayContainerUT = HourMinuteInDayContainer.newEmptyContainer();
-		assertEquals(0,timeInDayContainerUT.getExclusions().size());
+		assertEquals(0, timeInDayContainerUT.getExclusions().size());
 	}
 
 	@Test
 	public void canAddWorkingTimeException() {
-		timeInDayContainerUT = HourMinuteInDayContainer.newContainerWithComponents(HourMinuteInDayRange.valueOf("8:0", "17:0"));
-		
-		
+		timeInDayContainerUT = HourMinuteInDayContainer.newContainerWithComponents(HourMinuteInDayRange.valueOf("8:0",
+		        "17:0"));
+
 		HourMinuteInDayExclusion exception = new HourMinuteInDayExclusion("siesta", "14:30", "15:00");
 		timeInDayContainerUT.addExclusion(exception);
 
@@ -60,8 +57,8 @@ public class HourMinuteInDayContainerTest {
 	@Test
 	public void canRemoveWorkingTimeExceptions() {
 
-		
-		timeInDayContainerUT = HourMinuteInDayContainer.newContainerWithComponents(HourMinuteInDayRange.valueOf("8:0", "17:0"));
+		timeInDayContainerUT = HourMinuteInDayContainer.newContainerWithComponents(HourMinuteInDayRange.valueOf("8:0",
+		        "17:0"));
 		timeInDayContainerUT.addExclusion(new HourMinuteInDayExclusion("other", "3:00", "15:00"));
 		assertEquals(1, timeInDayContainerUT.getExclusions().size());
 

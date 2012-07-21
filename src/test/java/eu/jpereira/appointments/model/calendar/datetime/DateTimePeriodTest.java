@@ -1,8 +1,7 @@
 package eu.jpereira.appointments.model.calendar.datetime;
 
-import static org.junit.Assert.*;
-
-import org.junit.Test;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
 import eu.jpereira.appointments.model.calendar.datetime.DateTimePeriod;
 import eu.jpereira.appointments.model.calendar.datetime.SimpleDateTime;

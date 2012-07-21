@@ -1,9 +1,9 @@
 package eu.jpereira.appointments.model.calendar.datetime;
-import static org.junit.Assert.*;
 
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
-import org.junit.Before;
-import org.junit.Test;
 
 import eu.jpereira.appointments.model.calendar.WorkingDateTimePeriodExceptions;
 import eu.jpereira.appointments.model.calendar.datetime.DateTimePeriodException;
@@ -13,7 +13,7 @@ public class WorkingDateTimePeriodTest {
     private WorkingDateTimePeriodExceptions testWorkingDateTimePeriod;
     
     
-    @Before
+    @BeforeTest
     public void setup() {
         this.testWorkingDateTimePeriod = new WorkingDateTimePeriodExceptions();
     }

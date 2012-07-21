@@ -1,17 +1,19 @@
 package eu.jpereira.appointments.model.calendar;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 import eu.jpereira.appointments.model.calendar.datetime.DayOfMonthException;
-
-import static org.junit.Assert.*;
 
 public class WorkingDayOfMonthExceptionsTest {
 
     private WorkingDayOfMonthExceptions dayOfMonthExceptions;
 
-    @Before
+    @BeforeTest(description="Create Object Under Teste")
     public void setup() {
         this.dayOfMonthExceptions = new WorkingDayOfMonthExceptions();
     }
